@@ -15,15 +15,16 @@
 
 
 
-<meta name="description" content="郑斯达的github.io">
-<meta property="og:type" content="website">
-<meta property="og:title" content="littlesida|郑斯达的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="左递归的消除如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="语法分析--左递归的消除">
+<meta property="og:url" content="http://yoursite.com/2017/03/15/语法分析-左递归的消除/index.html">
 <meta property="og:site_name" content="littlesida|郑斯达的博客">
-<meta property="og:description" content="郑斯达的github.io">
+<meta property="og:description" content="左递归的消除如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。">
+<meta property="og:updated_time" content="2017-03-15T08:57:24.057Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="littlesida|郑斯达的博客">
-<meta name="twitter:description" content="郑斯达的github.io">
+<meta name="twitter:title" content="语法分析--左递归的消除">
+<meta name="twitter:description" content="左递归的消除如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -55,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives | littlesida|郑斯达的博客</title>
+<title>语法分析--左递归的消除 | littlesida|郑斯达的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -65,8 +66,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -263,85 +264,207 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-语法分析-左递归的消除" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/03/15/语法分析-左递归的消除/" class="archive-article-date">
-      <time datetime="2017-03-15T08:54:34.000Z" itemprop="datePublished">03-15</time>
+    <div class="article-meta">
+      <a href="/2017/03/15/语法分析-左递归的消除/" class="article-date">
+      <time datetime="2017-03-15T08:54:34.000Z" itemprop="datePublished">2017-03-15</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/15/语法分析-左递归的消除/">语法分析--左递归的消除</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      语法分析--左递归的消除
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+      </div>
+      
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/03/15/hello-world/" class="archive-article-date">
-      <time datetime="2017-03-15T02:08:36.441Z" itemprop="datePublished">03-15</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
+        <h2 id="左递归的消除"><a href="#左递归的消除" class="headerlink" title="左递归的消除"></a>左递归的消除</h2><p>如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。</p>
+<a id="more"></a>
+<blockquote>
+<p>对于左递归的产生式 A → Aα | β, 替换为非左递归的产生式如下(其中，ε表示空串)：<br>A → βA’<br>A’ → αA’ | ε</p>
+</blockquote>
+<p>这样的替换不会改变可从A推导得到的串的集合（证明省略）。该规则本身已经足够用来处理许多文法。</p>
+<p>###Example</p>
+<blockquote>
+<p>对文法<br>E → E+T | T<br>T → T*F | F<br>F → (E) | id</p>
+</blockquote>
+<p>通过使用上述的方法，将其转换为非左递归的文法，结果如下：</p>
+<blockquote>
+<p>E → TE’<br>E’ → +TE’ | ε<br>T → FT’+<br>T’ → +FT’ | ε<br>F → (E) | id</p>
+</blockquote>
+<p>在上述过程中，E → E+T | T被替换为E→TE’ 和E’ → +TE’|ε。类似的，T和T’的新产生式也是通过消除立即左递归得到的。</p>
+<h2 id="FIRST和FOLLOW集"><a href="#FIRST和FOLLOW集" class="headerlink" title="FIRST和FOLLOW集"></a>FIRST和FOLLOW集</h2><p>在语法分析部分，使用自顶向下和自底向上的语法分析器的构造可以使用文法G相关的两个函数，即FIRST和FOLLOW。</p>
+<h3 id="FIRST"><a href="#FIRST" class="headerlink" title="FIRST"></a>FIRST</h3><p>FIRST(α)被定义为可从α推导得到的串的首符号的集合，其中α是任意的文法符号串。如果α→(*)ε,那么ε也在FIRST(α)中。<br><strong>FIRST集的产生规则</strong>。计算各个文法符号X的FIRST(X)时，运用下面的规则，知道没有新的终端符号或ε可以被加入到任何的FIRST集合中为止：</p>
+<blockquote>
+<p>1) 如果X是一个终端字符，那么FIRST(X)=X<br>2) 如果X是一个非终端字符，且X→Y1Y2Y3…Yk是一个产生式，其中k≥1，那么如果对于某个i，a在FIRST中(Yi)中且ε在所有FIRST(Y1),FIRST(Y2)..FIRST(Yi-1)中，就把a加入到FIRST(X)中。<strong>Y1Y2Y3..Yk Yi 中的123ki表示的为小标 而不是终端符号</strong><br>3) 如果X→ε是一个产生式，那么将ε加入到FIRST(X)中。</p>
+</blockquote>
+<p><strong>对于第二条规则，也就是说，FIRST(Y1)中的每个元素都在FIRST(X)中，且，如果FIRST(Y1)中存在ε(空串)，则FIRST(Y2)也存在FIRST(X).对后面的同理</strong></p>
+<h3 id="FOLLOW"><a href="#FOLLOW" class="headerlink" title="FOLLOW"></a>FOLLOW</h3><p>对于非终端符号，FOLLOW(A)被定义为可能在某些句型中紧跟在A右边的终端字符的集合。例如，如果有S→αAaβ(其中α，β是文法符号)，那么终端符号a就在FOLLOW(A)中。如果A是某些句型的最右符号，则$也在FOLLOW(A)中。其中$为特殊的“结束标记”符号。<br><strong>FOLLOW集的产生规则</strong>计算各个文法符号X的FOLLOW(A)时，运用下面的规则，知道没有新的终端符号可以被加入到任何的FOLLOW集合中为止：</p>
+<blockquote>
+<p>1) 将$放入到FOLLOW(S)中，其中S是开始符号，而$是输入右端的结束标记<br>2) 如果存在一个产生式A→αBβ,那么FIRST(β)中除了ε外的所有符号都在FOLLOW(B)中。<br>3) 如果存在一个产生式A→αB,或存在产生式A→αBβ且FIRST(β)包含ε，那么FOLLOW(A)中的所有符号都在FOLLOW(B)中。</p>
+</blockquote>
+<h2 id="相关例子等待更新。"><a href="#相关例子等待更新。" class="headerlink" title="相关例子等待更新。"></a>相关例子等待更新。</h2>
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/15/语法分析-左递归的消除/">语法分析--左递归的消除</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">郑斯达</a></p>
+        <p><span>发布时间:</span>2017-03-15, 16:54:34</p>
+        <p><span>最后更新:</span>2017-03-15, 16:57:24</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/15/语法分析-左递归的消除/" title="语法分析--左递归的消除">http://yoursite.com/2017/03/15/语法分析-左递归的消除/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/15/语法分析-左递归的消除/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/03/15/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#左递归的消除"><span class="toc-number">1.</span> <span class="toc-text">左递归的消除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FIRST和FOLLOW集"><span class="toc-number">2.</span> <span class="toc-text">FIRST和FOLLOW集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FIRST"><span class="toc-number">2.1.</span> <span class="toc-text">FIRST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FOLLOW"><span class="toc-number">2.2.</span> <span class="toc-text">FOLLOW</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关例子等待更新。"><span class="toc-number">3.</span> <span class="toc-text">相关例子等待更新。</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
 
     
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"语法分析--左递归的消除　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/15/语法分析-左递归的消除/" data-title="语法分析--左递归的消除" data-url="http://yoursite.com/2017/03/15/语法分析-左递归的消除/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"null"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/03/15/hello-world/" title="下一篇: Hello World">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/语法分析-左递归的消除/">语法分析--左递归的消除</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
