@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="郑斯达" />
+
+
+
+<meta name="description" content="本文用两个例子来实现简单的中缀表达式转后缀表达式并计算出表达式的值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的中缀转后缀并求值的C/C++实现">
+<meta property="og:url" content="http://yoursite.com/2016/11/14/C-C++的中缀转后缀并求值的实现/index.html">
+<meta property="og:site_name" content="littlesida|郑斯达的博客">
+<meta property="og:description" content="本文用两个例子来实现简单的中缀表达式转后缀表达式并计算出表达式的值。">
+<meta property="og:updated_time" content="2017-03-15T16:21:17.556Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单的中缀转后缀并求值的C/C++实现">
+<meta name="twitter:description" content="本文用两个例子来实现简单的中缀表达式转后缀表达式并计算出表达式的值。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="littlesida|郑斯达的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/icon.jpg">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>简单的中缀转后缀并求值的C/C++实现 | littlesida|郑斯达的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/head.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">郑斯达</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">记录点啥</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:sidazheng1996@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/littlesida" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa QQ" href="/1289565858" title="QQ"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译原理/">编译原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/词法分析/">词法分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法分析/">语法分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">郑斯达</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/head.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">郑斯达</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">记录点啥</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:sidazheng1996@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/littlesida" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="/1289565858" title="QQ"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-C-C++的中缀转后缀并求值的实现" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/14/C-C++的中缀转后缀并求值的实现/" class="article-date">
+      <time datetime="2016-11-14T13:08:35.000Z" itemprop="datePublished">2016-11-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      简单的中缀转后缀并求值的C/C++实现
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>本文用两个例子来实现<strong>简单</strong>的中缀表达式转后缀表达式并计算出表达式的值。<br><a id="more"></a></p>
+<h2 id="中缀转后缀"><a href="#中缀转后缀" class="headerlink" title="中缀转后缀"></a>中缀转后缀</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>输入一个中缀算术表达式S，S中的操作数为0到9，只含+，-和*，/运算，也可能含有括号()，运算符的计算顺序和实际四则运算的计算顺序相同. 请输出与S等价的后缀表达式，注意输出结果不要含有多余的括号或空格.</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入有多组数据.</p>
+<p>每组数据是一个中缀表达式S，S的长度不超过50. 输入的S保证合法，而且不包含多余的空格或制表符.</p>
+<p>输入以#号结束.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>对于每个中缀表达式，输出转换后的后缀表达式，每个输出占一行.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">1+2*3</div><div class="line">(1-2)/3</div><div class="line">#</div></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">123*+</div><div class="line">12-3/</div></pre></td></tr></table></figure>
+<p>话不多说，直接贴代码，具体分析见<a href="https://www.baidu.com" target="_blank" rel="external">上一篇博客</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &lt;string&gt;</div><div class="line">#include &lt;stack&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">bool isBetter(char a, char b) &#123;</div><div class="line">	if ((a == &apos;*&apos; || a == &apos;/&apos;) &amp;&amp; (b == &apos;+&apos; || b == &apos;-&apos;)) return true;</div><div class="line">	return false;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line">	string input;</div><div class="line">	while(1) &#123;</div><div class="line">		cin &gt;&gt; input;</div><div class="line">		if (input[0] == &apos;#&apos;) break; // 判断是否结束</div><div class="line">		int l = input.size();</div><div class="line">		stack&lt;char&gt; op;</div><div class="line">		for (int i = 0; i &lt;= l; i++) &#123;</div><div class="line">			if (i != l) &#123; // 判断是否到达结尾</div><div class="line">				// 如果是数字，则直接输出</div><div class="line">				if (input[i] &gt;= &apos;0&apos; &amp;&amp; input[i] &lt;= &apos;9&apos;) &#123;</div><div class="line">					cout &lt;&lt; input[i];</div><div class="line">				&#125; else &#123;</div><div class="line">					// 如果栈为空或者是左括号，直接入栈</div><div class="line">					if (op.empty() || input[i] == &apos;(&apos;) &#123;</div><div class="line">						op.push(input[i]);</div><div class="line">					&#125; else if (input[i] == &apos;)&apos;)&#123;</div><div class="line">						// 如果时右括号，则将栈输出，直到遇到一个左括号</div><div class="line">						while(!op.empty() &amp;&amp; op.top() != &apos;(&apos;) &#123;</div><div class="line">							cout &lt;&lt; op.top();</div><div class="line">							op.pop();</div><div class="line">						&#125;</div><div class="line">						op.pop();// 将左括号弹出不输出</div><div class="line">					&#125; else &#123;</div><div class="line">						// 如果是运算符，则比较其与栈顶运算符的优先级</div><div class="line">						if (isBetter(input[i], op.top())) &#123; // 如果优先级高，则入栈</div><div class="line">							op.push(input[i]);</div><div class="line">						&#125; else &#123; // 如果优先级低，则输出栈顶，将当前运算符入栈</div><div class="line">							if (op.top() != &apos;(&apos;) &#123; // 确保栈顶不是左括号，左括号仅在读到右括号时处理</div><div class="line">								cout &lt;&lt; op.top();</div><div class="line">								op.pop();</div><div class="line">							&#125;</div><div class="line">							op.push(input[i]); // 将当前运算符入栈</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125; else &#123; // 将剩下的操作符输出</div><div class="line">				while (!op.empty()) &#123;</div><div class="line">					cout &lt;&lt; op.top();</div><div class="line">					op.pop();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		cout &lt;&lt; endl;</div><div class="line">	&#125;</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="计算中缀表达式的值"><a href="#计算中缀表达式的值" class="headerlink" title="计算中缀表达式的值"></a>计算中缀表达式的值</h2><p>本题目将上面的转换封装为函数，并做了适当的处理以将不同的运算数分开</p>
+<h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>输入中缀算术表达式S，S中的操作数为非负整数，只含+，-和*，/运算，也可能含有括号()，运算符的计算顺序和实际四则运算的计算顺序相同. 输出表达式S的值. 注意除法运算只取整数部分，例如1/2=0.</p>
+<h3 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h3><p>输入有多组数据.</p>
+<p>每组数据是一个算术表达式S，S的长度不超过100. 输入的S保证合法，而且不包含多余的空格或制表符. S的操作数、中间结果和最终结果都不会超过int类型的范围，也不会出现除数为0的情况.</p>
+<p>输入以#号结束.</p>
+<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h3><p> 对于每个算术表达式S，输出S的值，每个输出占一行.</p>
+<h3 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> 1</div><div class="line">478+522</div><div class="line">(478+522)*10 </div><div class="line">1/2-1</div><div class="line">#</div></pre></td></tr></table></figure>
+<h3 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">1000</div><div class="line">10000</div><div class="line">-1</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;stack&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">bool isBetter(char a, char b);</div><div class="line">string toPostifix(string input);</div><div class="line">int calculate(int x, int y, char t_op);</div><div class="line">int main() &#123;</div><div class="line">	string input, postfix;</div><div class="line">	while (1) &#123;</div><div class="line">		// 运用后缀表达式，遇到数字是入栈，遇到运算符时，从栈中取出并弹出两个数进行运算，将其运算结果压入栈中</div><div class="line">		cin &gt;&gt; input;</div><div class="line">		if (input[0] == &apos;#&apos;) break;</div><div class="line">		postfix = toPostifix(input); // 转成后缀表达式，用.将数字和操作符间隔开</div><div class="line">		int ll = postfix.size();</div><div class="line">		int tmpNum = 0;</div><div class="line">		int mark = 0; // 用来标记是否输出是单个数字的情况</div><div class="line">		stack&lt;int&gt; num;</div><div class="line">		for (int i = 0; i &lt; ll; i++) &#123;</div><div class="line">			if (postfix[i] == &apos;.&apos;) &#123; // 如果读到. 则将读取到的数入栈</div><div class="line">				if (tmpNum != 0) &#123;</div><div class="line">					int x = tmpNum;</div><div class="line">					num.push(x);</div><div class="line">					tmpNum = 0;</div><div class="line">					mark = 1;</div><div class="line">				&#125;</div><div class="line">			&#125; else &#123;</div><div class="line">				// 如果遇到的是数字，则逐步将其转成int</div><div class="line">				if (postfix[i] &gt;= &apos;0&apos; &amp;&amp; postfix[i] &lt;= &apos;9&apos;) &#123;</div><div class="line">					tmpNum = tmpNum*10+postfix[i]-&apos;0&apos;;</div><div class="line">					mark = 2;</div><div class="line">				&#125; else &#123;</div><div class="line">					// 遇到数字后面没有.而是操作符的情况下，也要将数字提取出来入栈</div><div class="line">					if (mark == 2) &#123;</div><div class="line">						int x = tmpNum;</div><div class="line">						num.push(x);</div><div class="line">						tmpNum = 0;</div><div class="line">						mark = 1;</div><div class="line">					&#125;</div><div class="line">					// 遇到运算符，计算出新的值，然后入栈</div><div class="line">					int num1 = num.top();</div><div class="line">					num.pop();</div><div class="line">					int num2 = num.top();</div><div class="line">					num.pop();</div><div class="line">					int ans = calculate(num2, num1, postfix[i]);</div><div class="line">					num.push(ans);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		if (mark == 2) &#123;</div><div class="line">			cout &lt;&lt; tmpNum &lt;&lt; endl;</div><div class="line">		&#125; else if (!num.empty()) &#123;</div><div class="line">			cout &lt;&lt; num.top() &lt;&lt; endl;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bool isBetter(char a, char b) &#123;</div><div class="line">	if ((a == &apos;*&apos; || a == &apos;/&apos;) &amp;&amp; (b == &apos;+&apos; || b == &apos;-&apos;)) return true;</div><div class="line">	return false;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">int calculate(int x, int y, char t_op) &#123;</div><div class="line">	if (t_op == &apos;+&apos;) return x+y;</div><div class="line">	if (t_op == &apos;-&apos;) return x-y;</div><div class="line">	if (t_op == &apos;*&apos;) return x*y;</div><div class="line">	return x/y;</div><div class="line">&#125;</div><div class="line">string toPostifix(string input) &#123;</div><div class="line">	string tmp = &quot;&quot;;</div><div class="line">	int l = input.size();</div><div class="line">	stack&lt;char&gt; op;</div><div class="line">	for (int i = 0; i &lt;= l; i++) &#123;</div><div class="line">		if (i != l) &#123; // 判断是否到达结尾</div><div class="line">			// 如果是数字，则直接输出</div><div class="line">			if (input[i] &gt;= &apos;0&apos; &amp;&amp; input[i] &lt;= &apos;9&apos;) &#123;</div><div class="line">				tmp += input[i];</div><div class="line">			&#125; else &#123;</div><div class="line">				tmp += &apos;.&apos;;</div><div class="line">				// 如果栈为空或者是左括号，直接入栈</div><div class="line">				if (op.empty() || input[i] == &apos;(&apos;) &#123;</div><div class="line">					op.push(input[i]);</div><div class="line">				&#125; else if (input[i] == &apos;)&apos;)&#123;</div><div class="line">					// 如果时右括号，则将栈输出，直到遇到一个左括号</div><div class="line">					while(!op.empty() &amp;&amp; op.top() != &apos;(&apos;) &#123;</div><div class="line">						tmp += op.top();</div><div class="line">						op.pop();</div><div class="line">					&#125;</div><div class="line">					op.pop();// 将左括号弹出不输出</div><div class="line">				&#125; else &#123;</div><div class="line">					// 如果是运算符，则比较其与栈顶运算符的优先级</div><div class="line">					if (isBetter(input[i], op.top())) &#123; // 如果优先级高，则入栈</div><div class="line">						op.push(input[i]);</div><div class="line">					&#125; else &#123; // 如果优先级低，则输出栈顶，将当前运算符入栈</div><div class="line">						if (op.top() != &apos;(&apos;) &#123; // 确保栈顶不是左括号，左括号仅在读到右括号时处理</div><div class="line">							tmp += op.top();</div><div class="line">							op.pop();</div><div class="line">						&#125;</div><div class="line">						op.push(input[i]); // 将当前运算符入栈</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125; else &#123; // 将剩下的操作符输出</div><div class="line">			while (!op.empty()) &#123;</div><div class="line">				tmp += op.top();</div><div class="line">				op.pop();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return tmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/11/14/C-C++的中缀转后缀并求值的实现/">简单的中缀转后缀并求值的C/C++实现</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">郑斯达</a></p>
+        <p><span>发布时间:</span>2016-11-14, 21:08:35</p>
+        <p><span>最后更新:</span>2017-03-16, 00:21:17</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/11/14/C-C++的中缀转后缀并求值的实现/" title="简单的中缀转后缀并求值的C/C++实现">http://yoursite.com/2016/11/14/C-C++的中缀转后缀并求值的实现/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/11/14/C-C++的中缀转后缀并求值的实现/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/03/15/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/11/14/中缀表达式转后缀表达式/">
+                    中缀表达式转后缀表达式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#中缀转后缀"><span class="toc-number">1.</span> <span class="toc-text">中缀转后缀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.2.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.3.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.4.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.5.</span> <span class="toc-text">Sample Output</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算中缀表达式的值"><span class="toc-number">2.</span> <span class="toc-text">计算中缀表达式的值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description-1"><span class="toc-number">2.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">2.2.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">2.3.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">2.4.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">2.5.</span> <span class="toc-text">Sample Output</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"简单的中缀转后缀并求值的C/C++实现　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/11/14/C-C++的中缀转后缀并求值的实现/" data-title="简单的中缀转后缀并求值的C/C++实现" data-url="http://yoursite.com/2016/11/14/C-C++的中缀转后缀并求值的实现/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"null"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/03/15/hello-world/" title="上一篇: Hello World">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/11/14/中缀表达式转后缀表达式/" title="下一篇: 中缀表达式转后缀表达式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/hexo学习/">hexo学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/14/C-C++的中缀转后缀并求值的实现/">简单的中缀转后缀并求值的C/C++实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/14/中缀表达式转后缀表达式/">中缀表达式转后缀表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/07/Win10下MySQL5.7.16zip包安装教程/">在windows下使用zip包安装MySQL5.7.16</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/06/语法分析-左递归的消除/">语法分析--左递归的消除</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/词法分析☞正则表达式/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/词法分析☞NFA语言识别/">词法分析☞NFA语言识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/词法分析小结☞词法分析器的作用/">词法分析器的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/30/词法分析☞DFA语言识别/">词法分析☞DFA语言识别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017 郑斯达
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

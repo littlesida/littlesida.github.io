@@ -15,16 +15,20 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="正则表达式是一种用来描述词素模式的重要表示方法。值得注意的是，虽然正则表达式无法表达出所有可能的模式，但是它们可以很高效地描述自处理词法单元时要用到的模式类型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/03/15/hello-world/index.html">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="http://yoursite.com/2016/10/14/词法分析☞正则表达式/index.html">
 <meta property="og:site_name" content="littlesida|郑斯达的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta property="og:updated_time" content="2017-03-15T15:40:05.465Z">
+<meta property="og:description" content="正则表达式是一种用来描述词素模式的重要表示方法。值得注意的是，虽然正则表达式无法表达出所有可能的模式，但是它们可以很高效地描述自处理词法单元时要用到的模式类型">
+<meta property="og:image" content="http://img.blog.csdn.net/20161013212754430">
+<meta property="og:image" content="http://img.blog.csdn.net/20161013213027124">
+<meta property="og:image" content="http://img.blog.csdn.net/20161014001254735">
+<meta property="og:updated_time" content="2017-03-15T16:07:49.736Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="正则表达式">
+<meta name="twitter:description" content="正则表达式是一种用来描述词素模式的重要表示方法。值得注意的是，虽然正则表达式无法表达出所有可能的模式，但是它们可以很高效地描述自处理词法单元时要用到的模式类型">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161013212754430">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Hello World | littlesida|郑斯达的博客</title>
+<title>正则表达式 | littlesida|郑斯达的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -264,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-词法分析☞正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/03/15/hello-world/" class="article-date">
-      <time datetime="2017-03-15T02:08:36.441Z" itemprop="datePublished">2017-03-15</time>
+      <a href="/2016/10/14/词法分析☞正则表达式/" class="article-date">
+      <time datetime="2016-10-13T16:04:23.000Z" itemprop="datePublished">2016-10-14</time>
 </a>
 
 
@@ -283,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      正则表达式
     </h1>
   
 
@@ -293,6 +297,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编译原理/">编译原理</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -300,15 +308,65 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <blockquote>
+<p>正则表达式是一种用来描述词素模式的重要表示方法。<br>值得注意的是，虽然正则表达式无法表达出所有可能的模式，但是它们可以很高效地描述自处理词法单元时要用到的模式类型</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h2><blockquote>
+<p>首先 先看几个基本定义<br><strong>字母表（alphabet）</strong>是一个有限的符号集合Σ。符号的典型例子包括字母、数字和标点符号。 例如Σ= {0，1}是二进制字母表（binary alphabet）。<br><strong>串（string）</strong>是该字母表中符号的一个有穷序列。串s的长度通常记作 |s|，指串中符号出现的次数。例如 teach 这个串的长度为5. 长度为0的串称为<strong>空串（empty string）</strong>，用符号ε表示。<br><strong>语言（language）</strong>是某个给定字母表上一个任意的可数的串的集合。（该定义并不要求语言中的串一定具有某种含义）。例如，100， 001， 000是二进制字母表上定义的语言</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>如果x和y是串，则x和y的<strong>连接（concatenation）</strong>（记作xy）是把y附加到x后面而形成的串。例如x=aaa，y=bbb，那么xy=aaabbb。值得注意的是，<strong>空串是连接运算的单位元</strong>也就是说 xy=xεy。而对于任意的串，有sε=εs=s。<br>如果把两个串的连接看成是这两个串的乘积，可以定义“指数”运算s^0=ε, s^1=s, s^2=ss….</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>语言的运算（并、连接、闭包）其中，闭包包括Kleene闭包和正闭包<br><img src="http://img.blog.csdn.net/20161013212754430" alt="英文描述"><br><img src="http://img.blog.csdn.net/20161013213027124" alt="中文描述"></p>
+</blockquote>
+<hr>
+<h2 id="正则语言（Regular-Language）"><a href="#正则语言（Regular-Language）" class="headerlink" title="正则语言（Regular Language）"></a>正则语言（Regular Language）</h2><blockquote>
+<p>正则语言的优点</p>
+<ul>
+<li>容易理解</li>
+<li>能高效实现</li>
+<li>具有坚实的理论基础<br>正则表达式可以由较小的正则表达式递归构建</li>
+</ul>
+</blockquote>
+<h2 id="正则表达式的递归定义"><a href="#正则表达式的递归定义" class="headerlink" title="正则表达式的递归定义"></a>正则表达式的递归定义</h2><blockquote>
+<p>(1) ε是一个正则表达式，L(ε)={ε}, 即该语言只包含空串。<br>(2) 如果a是Σ上的一个符号，那么a是一个正则表达式，并且L(a)={a}。也就是说，这个语言仅包含一个 长度为1的符号串a<br><strong>归纳步骤：</strong>由较小的正则表达式构造出较大的正则表达式有四个步骤，假设r和s都是正则表达式，对应的语言分别为L(s)和L(r).<br>1) (r)|(s)是一个正则表达式，表示语言L(r)⋃L(s).<br>2) (r)(s)是一个正则表达式，表示语言L(r)L(s).<br>3) (r)<em>是一个正则表达式，表示语言(L(r))\</em><br>4) (r)是一个正则表达式，表示语言L(r)。<strong>这个规则是为了说明在表达式两边加上括号不影响表达式表示的语言。</strong></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>由于上面的定义，正则表达式有时会出现一些不必要的括号。为了去掉一些括号，我们有如下规定<br>(1) 一元运算符*具有最高的优先级，并且是左结合的<br>(2) 连接具有次高优先级，并且也是左结合的<br>(3) <strong>|</strong> 的优先级最低，并且也是左结合的</p>
+<p> <strong>例子</strong><br> 令Σ = {a, b}<br> 正则表达式 a|b 表示语言 {a, b}.<br> 正则表达式 (a|b)(a|b)表示语言 aa|bb|ab|ba<br> 正则表达式 a* 表示所有由零个或多个a组成的串的集合 即{ε, a, aa, aaa, aaaa….}</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>可以用一个正则表达式定义的语言叫做<strong>正则集合(regular set)</strong>如果两个正则表达式r和s表示同样的语言，则称r和s<strong>等价(equivalent)</strong>，记作r=s. 下面给出正则表达式的代数定律。<br><img src="http://img.blog.csdn.net/20161014001254735" alt="正则表达式的代数定律"></p>
+</blockquote>
+<hr>
+<h2 id="正则定义-regular-definition"><a href="#正则定义-regular-definition" class="headerlink" title="正则定义(regular definition)"></a>正则定义(regular definition)</h2><blockquote>
+<p>有时，对一个正则表达式，一个表示部分可能会重复出现多次，为了方便，我们希望能够给某些正则表达式命名，并在之后的正则表达式中使用，即正则定义。<br>以C语言标识符为例，表示标识符的正则表达式如下<br><strong>(a|b|c…|z|A|B….|Z|<em>)( (a|b..|z|A|B…|Z|\</em>)|(0|1|2…|9) )*</strong><br>该表达式看起来很冗长，当引入正则定义后，有:<br>letter<em> → a|b|c…|z|A|B….|Z|</em><br>digit → 0|1|2…|9<br>id → letter<em>(letter\</em>|digit)*</p>
+</blockquote>
+<hr>
+<h2 id="正则表达式的扩展"><a href="#正则表达式的扩展" class="headerlink" title="正则表达式的扩展"></a>正则表达式的扩展</h2><blockquote>
+<p><strong>一个或多个实例：</strong> r*表示的是0个或多个r的串，而 r+ == rr*即 去掉了空串的情况<br><strong>零或一个实例：</strong> 使用单目运算符<strong>?</strong>,意思是出现0次或1次。a? 表示的语言为{a, ε}. ?运算符与+运算符和*运算符具有同样的优先级和结合性。<br><strong>字符类：</strong> 一个正则表达式 a1|a2|a3…|an(ai是字母表中的各个符号) 可以缩写为[a1a2a3…an],当其是连续的时候，可以表示为[a1-an]，例如a|b|c…|z 可以表示为[a-z]</p>
+</blockquote>
+<hr>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><blockquote>
+<p><strong>下面的正则表达式描述了什么语言</strong><br><strong>a(a|b)*a</strong>  所有以a开始和结束，并且中间有0个或多个a或b的串<br><strong>(a|b)*a(a|b)(a|b)</strong>  所有以 aaa或aab或aba或abb结尾的只含有ab的串<br><strong>a*ba*ba*ba*</strong> 所有有且只有三个b的含有ab的串<br><strong>((ε|a)b*)*</strong> 等价于 (ab*)*即 包含任意个a和b的串（？？？）<br><strong>b*(ab*ab*)*</strong> 所有含有偶数个a的由a和b组成的字符串<br><strong>c*a(a|c)*b(a|b|c)*|c*b(b|c)*a(a|b|c)*</strong> 表示至少存在一个a和一个b的由abc三个字符组成的串</p>
+<p><strong>设字母表∑={a,b}，用正则表达式（只使用a，b，，|，*，+，？）描述下列语言：</strong></p>
+<ol>
+<li>不包含子串ab的所有字符串.  b*a*</li>
+<li>不包含子串abb的所有字符串.  b*(ab?)*</li>
+<li>不包含子序列abb的所有字符串. b*a*b?a*</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><blockquote>
+<p>关于串的部分术语<br>1） 串s的<strong>前缀（prefix）</strong>是从s的尾部删除0个或多个符号后得到的串。例如 ban，banana和ε是banana的前缀<br>2） 串s的<strong>后缀（suffix）</strong>是指从s的开始处删除0个或多个符号后得到的串。例如nana，banana和ε是banana的后缀<br>3）串s的<strong>子串（substring）</strong>是指删除s的某个前缀和某个后缀后得到的串。例如 ana是banana的子串<br>4） 串s的<strong>真（true）前缀、真后缀、真子串</strong>分别是s的既不等于ε，也不等于本身的前缀、后缀和子串<br>5） 串s的<strong>子序列（subsequence）</strong>是指从s中删除-个或者多个符号后得到的串，这些被删除的符号可能<strong>不相邻</strong>。例如，baaa是banana的一个子序列</p>
+</blockquote>
+<hr>
 
       
     </div>
@@ -317,13 +375,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/03/15/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a href="/2016/10/14/词法分析☞正则表达式/">正则表达式</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">郑斯达</a></p>
-        <p><span>发布时间:</span>2017-03-15, 10:08:36</p>
-        <p><span>最后更新:</span>2017-03-15, 23:40:05</p>
+        <p><span>发布时间:</span>2016-10-14, 00:04:23</p>
+        <p><span>最后更新:</span>2017-03-16, 00:07:49</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/03/15/hello-world/" title="Hello World">http://yoursite.com/2017/03/15/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/15/hello-world/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/14/词法分析☞正则表达式/" title="正则表达式">http://yoursite.com/2016/10/14/词法分析☞正则表达式/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/10/14/词法分析☞正则表达式/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -336,15 +394,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/03/15/hexo学习/">
-                    hexo学习
+                <a href="/2016/11/06/语法分析-左递归的消除/">
+                    语法分析--左递归的消除
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/11/14/C-C++的中缀转后缀并求值的实现/">
-                    简单的中缀转后缀并求值的C/C++实现
+                <a href="/2016/10/13/词法分析☞NFA语言识别/">
+                    词法分析☞NFA语言识别
                 </a>
             </div>
         
@@ -356,7 +414,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本定义"><span class="toc-number">1.</span> <span class="toc-text">基本定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则语言（Regular-Language）"><span class="toc-number">2.</span> <span class="toc-text">正则语言（Regular Language）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式的递归定义"><span class="toc-number">3.</span> <span class="toc-text">正则表达式的递归定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则定义-regular-definition"><span class="toc-number">4.</span> <span class="toc-text">正则定义(regular definition)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式的扩展"><span class="toc-number">5.</span> <span class="toc-text">正则表达式的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习"><span class="toc-number">6.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-number">7.</span> <span class="toc-text">补充</span></a></li></ol>
         
     </div>
     <style>
@@ -392,7 +450,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Hello World　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"正则表达式　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -408,7 +466,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/15/hello-world/" data-title="Hello World" data-url="http://yoursite.com/2017/03/15/hello-world/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/10/14/词法分析☞正则表达式/" data-title="正则表达式" data-url="http://yoursite.com/2016/10/14/词法分析☞正则表达式/"></div>
     <script>
         var duoshuoQuery = {short_name:"null"};
         var loadComment = function(){
@@ -431,7 +489,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/03/15/hexo学习/" title="上一篇: hexo学习">
+            <a href="/2016/11/06/语法分析-左递归的消除/" title="上一篇: 语法分析--左递归的消除">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -439,7 +497,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/11/14/C-C++的中缀转后缀并求值的实现/" title="下一篇: 简单的中缀转后缀并求值的C/C++实现">
+            <a href="/2016/10/13/词法分析☞NFA语言识别/" title="下一篇: 词法分析☞NFA语言识别">
                 <i class="fa fa-angle-right"></i>
             </a>
         

@@ -15,16 +15,18 @@
 
 
 
-<meta name="description" content="左递归的消除如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。">
+<meta name="description" content="词法分析是编译的第一阶段。词法分析器的主要任务是读入源程序的输入字符、将它们组成词素，生成并输出一个词法单元序列，每个词法单元对应于一个词素。这个词法单元序列被输出到语法分析器进行语法分析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="语法分析--左递归的消除">
-<meta property="og:url" content="http://yoursite.com/2017/03/15/语法分析-左递归的消除/index.html">
+<meta property="og:title" content="词法分析器的作用">
+<meta property="og:url" content="http://yoursite.com/2016/10/13/词法分析小结☞词法分析器的作用/index.html">
 <meta property="og:site_name" content="littlesida|郑斯达的博客">
-<meta property="og:description" content="左递归的消除如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。">
-<meta property="og:updated_time" content="2017-03-15T09:02:30.290Z">
+<meta property="og:description" content="词法分析是编译的第一阶段。词法分析器的主要任务是读入源程序的输入字符、将它们组成词素，生成并输出一个词法单元序列，每个词法单元对应于一个词素。这个词法单元序列被输出到语法分析器进行语法分析">
+<meta property="og:image" content="http://img.blog.csdn.net/20160923012813470">
+<meta property="og:updated_time" content="2017-03-15T16:03:07.560Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="语法分析--左递归的消除">
-<meta name="twitter:description" content="左递归的消除如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。">
+<meta name="twitter:title" content="词法分析器的作用">
+<meta name="twitter:description" content="词法分析是编译的第一阶段。词法分析器的主要任务是读入源程序的输入字符、将它们组成词素，生成并输出一个词法单元序列，每个词法单元对应于一个词素。这个词法单元序列被输出到语法分析器进行语法分析">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160923012813470">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>语法分析--左递归的消除 | littlesida|郑斯达的博客</title>
+<title>词法分析器的作用 | littlesida|郑斯达的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -185,7 +187,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-Object/">[object Object]</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译原理/">编译原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/词法分析/">词法分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法分析/">语法分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li></ul>
                     </div>
                 </section>
                 
@@ -264,11 +266,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-语法分析-左递归的消除" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-词法分析小结☞词法分析器的作用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/03/15/语法分析-左递归的消除/" class="article-date">
-      <time datetime="2017-03-15T08:54:34.000Z" itemprop="datePublished">2017-03-15</time>
+      <a href="/2016/10/13/词法分析小结☞词法分析器的作用/" class="article-date">
+      <time datetime="2016-10-13T12:55:00.000Z" itemprop="datePublished">2016-10-13</time>
 </a>
 
 
@@ -283,7 +285,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      语法分析--左递归的消除
+      词法分析器的作用
     </h1>
   
 
@@ -294,7 +296,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/object-Object/">[object Object]</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编译原理/">编译原理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/词法分析/">词法分析</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -304,32 +306,19 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="左递归的消除"><a href="#左递归的消除" class="headerlink" title="左递归的消除"></a>左递归的消除</h2><p>如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。</p>
+        <blockquote>
+<p>词法分析是编译的第一阶段。词法分析器的主要任务是读入源程序的输入字符、将它们组成词素，生成并输出一个词法单元序列，每个词法单元对应于一个词素。这个词法单元序列被输出到语法分析器进行语法分析</p>
+</blockquote>
 <a id="more"></a>
 <blockquote>
-<p>对于左递归的产生式 A → Aα | β, 替换为非左递归的产生式如下(其中，ε表示空串)：<br>A → βA’<br>A’ → αA’ | ε</p>
+<p>词法分析器通常还要和符号表进行交互。当词法分析器发现了一个标识符的词素时，它要将这个词素添加到符号表中，在某些情况下，词法分析器会从符号表中读取有关标识符的种类的信息，以确定向语法分析器传送哪个词法单元。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://img.blog.csdn.net/20160923012813470" alt="交互过程"></h2><p>词法分析器在编译器中负责读取源程序，因此它还会完成一些识别词素之外的具体其他任务。<br>（1）过滤掉源程序中的注释和空白（空格、换行符和制表符以及在输入中用于分隔词法单元的其他字符）<br>（2）将编译器生成的错误消息和源程序的位置联系起来。<br><strong>有时，词法分析器可以分成两个级联的处理阶段：</strong><br><strong>1）扫描阶段主要负责完成一些不需要生词词法单元的简单处理，比如删除注释和将多个连续的空白字符压缩成一个字符</strong><br><strong>2）词法分析阶段是较为复杂的部分，它处理扫描阶段的输出并生成词法单元</strong></p>
 </blockquote>
-<p>这样的替换不会改变可从A推导得到的串的集合（证明省略）。该规则本身已经足够用来处理许多文法。</p>
-<p>###Example</p>
+<hr>
 <blockquote>
-<p>对文法<br>E → E+T | T<br>T → T*F | F<br>F → (E) | id</p>
+<p>把编译器的分析部分分为词法分析和语法分析阶段主要有以下几个原因<br>A. 最重要的一点是考虑编译器的设计。将词法分析和语法分析分离开来，使得任务简化。<br>B. 提高编译器的效率。将两个阶段分离开来，使得我们能够专注于处理每个阶段对应的任务<br>C. 增强编译器的可移植性。输入设备相关的特殊性可以被限制在词法分析器中</p>
 </blockquote>
-<p>通过使用上述的方法，将其转换为非左递归的文法，结果如下：</p>
-<blockquote>
-<p>E → TE’<br>E’ → +TE’ | ε<br>T → FT’+<br>T’ → +FT’ | ε<br>F → (E) | id</p>
-</blockquote>
-<p>在上述过程中，E → E+T | T被替换为E→TE’ 和E’ → +TE’|ε。类似的，T和T’的新产生式也是通过消除立即左递归得到的。</p>
-<h2 id="FIRST和FOLLOW集"><a href="#FIRST和FOLLOW集" class="headerlink" title="FIRST和FOLLOW集"></a>FIRST和FOLLOW集</h2><p>在语法分析部分，使用自顶向下和自底向上的语法分析器的构造可以使用文法G相关的两个函数，即FIRST和FOLLOW。</p>
-<h3 id="FIRST"><a href="#FIRST" class="headerlink" title="FIRST"></a>FIRST</h3><p>FIRST(α)被定义为可从α推导得到的串的首符号的集合，其中α是任意的文法符号串。如果α→(*)ε,那么ε也在FIRST(α)中。<br><strong>FIRST集的产生规则</strong>。计算各个文法符号X的FIRST(X)时，运用下面的规则，知道没有新的终端符号或ε可以被加入到任何的FIRST集合中为止：</p>
-<blockquote>
-<p>1) 如果X是一个终端字符，那么FIRST(X)=X<br>2) 如果X是一个非终端字符，且X→Y1Y2Y3…Yk是一个产生式，其中k≥1，那么如果对于某个i，a在FIRST中(Yi)中且ε在所有FIRST(Y1),FIRST(Y2)..FIRST(Yi-1)中，就把a加入到FIRST(X)中。<strong>Y1Y2Y3..Yk Yi 中的123ki表示的为小标 而不是终端符号</strong><br>3) 如果X→ε是一个产生式，那么将ε加入到FIRST(X)中。</p>
-</blockquote>
-<p><strong>对于第二条规则，也就是说，FIRST(Y1)中的每个元素都在FIRST(X)中，且，如果FIRST(Y1)中存在ε(空串)，则FIRST(Y2)也存在FIRST(X).对后面的同理</strong></p>
-<h3 id="FOLLOW"><a href="#FOLLOW" class="headerlink" title="FOLLOW"></a>FOLLOW</h3><p>对于非终端符号，FOLLOW(A)被定义为可能在某些句型中紧跟在A右边的终端字符的集合。例如，如果有S→αAaβ(其中α，β是文法符号)，那么终端符号a就在FOLLOW(A)中。如果A是某些句型的最右符号，则$也在FOLLOW(A)中。其中$为特殊的“结束标记”符号。<br><strong>FOLLOW集的产生规则</strong>计算各个文法符号X的FOLLOW(A)时，运用下面的规则，知道没有新的终端符号可以被加入到任何的FOLLOW集合中为止：</p>
-<blockquote>
-<p>1) 将$放入到FOLLOW(S)中，其中S是开始符号，而$是输入右端的结束标记<br>2) 如果存在一个产生式A→αBβ,那么FIRST(β)中除了ε外的所有符号都在FOLLOW(B)中。<br>3) 如果存在一个产生式A→αB,或存在产生式A→αBβ且FIRST(β)包含ε，那么FOLLOW(A)中的所有符号都在FOLLOW(B)中。</p>
-</blockquote>
-<h2 id="相关例子等待更新。"><a href="#相关例子等待更新。" class="headerlink" title="相关例子等待更新。"></a>相关例子等待更新。</h2>
+
       
     </div>
     
@@ -337,13 +326,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/03/15/语法分析-左递归的消除/">语法分析--左递归的消除</a></p>
+        <p><span>本文标题:</span><a href="/2016/10/13/词法分析小结☞词法分析器的作用/">词法分析器的作用</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">郑斯达</a></p>
-        <p><span>发布时间:</span>2017-03-15, 16:54:34</p>
-        <p><span>最后更新:</span>2017-03-15, 17:02:30</p>
+        <p><span>发布时间:</span>2016-10-13, 20:55:00</p>
+        <p><span>最后更新:</span>2017-03-16, 00:03:07</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/03/15/语法分析-左递归的消除/" title="语法分析--左递归的消除">http://yoursite.com/2017/03/15/语法分析-左递归的消除/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/15/语法分析-左递归的消除/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/13/词法分析小结☞词法分析器的作用/" title="词法分析器的作用">http://yoursite.com/2016/10/13/词法分析小结☞词法分析器的作用/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/10/13/词法分析小结☞词法分析器的作用/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -355,10 +344,16 @@
 
     <nav id="article-nav">
         
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/10/13/词法分析☞NFA语言识别/">
+                    词法分析☞NFA语言识别
+                </a>
+            </div>
+        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/03/15/hello-world/">
-                    Hello World
+                <a href="/2016/09/30/词法分析☞DFA语言识别/">
+                    词法分析☞DFA语言识别
                 </a>
             </div>
         
@@ -370,7 +365,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#左递归的消除"><span class="toc-number">1.</span> <span class="toc-text">左递归的消除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FIRST和FOLLOW集"><span class="toc-number">2.</span> <span class="toc-text">FIRST和FOLLOW集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FIRST"><span class="toc-number">2.1.</span> <span class="toc-text">FIRST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FOLLOW"><span class="toc-number">2.2.</span> <span class="toc-text">FOLLOW</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关例子等待更新。"><span class="toc-number">3.</span> <span class="toc-text">相关例子等待更新。</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li></ol>
         
     </div>
     <style>
@@ -406,7 +401,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"语法分析--左递归的消除　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"词法分析器的作用　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -422,7 +417,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/15/语法分析-左递归的消除/" data-title="语法分析--左递归的消除" data-url="http://yoursite.com/2017/03/15/语法分析-左递归的消除/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/10/13/词法分析小结☞词法分析器的作用/" data-title="词法分析器的作用" data-url="http://yoursite.com/2016/10/13/词法分析小结☞词法分析器的作用/"></div>
     <script>
         var duoshuoQuery = {short_name:"null"};
         var loadComment = function(){
@@ -445,19 +440,21 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2016/10/13/词法分析☞NFA语言识别/" title="上一篇: 词法分析☞NFA语言识别">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/03/15/hello-world/" title="下一篇: Hello World">
+            <a href="/2016/09/30/词法分析☞DFA语言识别/" title="下一篇: 词法分析☞DFA语言识别">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/语法分析-左递归的消除/">语法分析--左递归的消除</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/hexo学习/">hexo学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/14/C-C++的中缀转后缀并求值的实现/">简单的中缀转后缀并求值的C/C++实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/14/中缀表达式转后缀表达式/">中缀表达式转后缀表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/07/Win10下MySQL5.7.16zip包安装教程/">在windows下使用zip包安装MySQL5.7.16</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/06/语法分析-左递归的消除/">语法分析--左递归的消除</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/词法分析☞正则表达式/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/词法分析☞NFA语言识别/">词法分析☞NFA语言识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/词法分析小结☞词法分析器的作用/">词法分析器的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/30/词法分析☞DFA语言识别/">词法分析☞DFA语言识别</a></li></ul>
 
 
 

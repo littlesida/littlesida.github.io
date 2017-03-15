@@ -15,16 +15,28 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="在windows下安装MySQL常见有两种方式，第一种是使用zip包安装，即本文所讲方式；第二种为使用msi格式文件直接安装。本文为在ubuntu下使用源文件安装失败（二进制文件安装成功）后使用windows尝试。使用的环境为windows10 64位操作系统。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/03/15/hello-world/index.html">
+<meta property="og:title" content="在windows下使用zip包安装MySQL5.7.16">
+<meta property="og:url" content="http://yoursite.com/2016/11/07/Win10下MySQL5.7.16zip包安装教程/index.html">
 <meta property="og:site_name" content="littlesida|郑斯达的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta property="og:updated_time" content="2017-03-15T15:40:05.465Z">
+<meta property="og:description" content="在windows下安装MySQL常见有两种方式，第一种是使用zip包安装，即本文所讲方式；第二种为使用msi格式文件直接安装。本文为在ubuntu下使用源文件安装失败（二进制文件安装成功）后使用windows尝试。使用的环境为windows10 64位操作系统。">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107133716803">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107134105007">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107134347260">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107134519293">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107134747044">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107134829185">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107135227177">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107134913764">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107134958049">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107135112327">
+<meta property="og:image" content="http://img.blog.csdn.net/20161107135142577">
+<meta property="og:updated_time" content="2017-03-15T15:53:52.821Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="在windows下使用zip包安装MySQL5.7.16">
+<meta name="twitter:description" content="在windows下安装MySQL常见有两种方式，第一种是使用zip包安装，即本文所讲方式；第二种为使用msi格式文件直接安装。本文为在ubuntu下使用源文件安装失败（二进制文件安装成功）后使用windows尝试。使用的环境为windows10 64位操作系统。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161107133716803">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +68,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Hello World | littlesida|郑斯达的博客</title>
+<title>在windows下使用zip包安装MySQL5.7.16 | littlesida|郑斯达的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -264,11 +276,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Win10下MySQL5.7.16zip包安装教程" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/03/15/hello-world/" class="article-date">
-      <time datetime="2017-03-15T02:08:36.441Z" itemprop="datePublished">2017-03-15</time>
+      <a href="/2016/11/07/Win10下MySQL5.7.16zip包安装教程/" class="article-date">
+      <time datetime="2016-11-07T12:00:39.000Z" itemprop="datePublished">2016-11-07</time>
 </a>
 
 
@@ -283,7 +295,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      在windows下使用zip包安装MySQL5.7.16
     </h1>
   
 
@@ -293,6 +305,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/">windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件/">软件</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -300,15 +316,31 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>在windows下安装MySQL常见有两种方式，第一种是使用zip包安装，即本文所讲方式；第二种为使用msi格式文件直接安装。<br>本文为在ubuntu下使用源文件安装失败（二进制文件安装成功）后使用windows尝试。<br>使用的环境为windows10 64位操作系统。</p>
+<a id="more"></a>
+<h2 id="下载zip包"><a href="#下载zip包" class="headerlink" title="下载zip包"></a>下载zip包</h2><p>首先，到MySQL的官网下载相应的zip包，下载地址为 <a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">zip包下载地址</a></p>
+<p><img src="http://img.blog.csdn.net/20161107133716803" alt="zip包下载"></p>
+<h2 id="解压zip包"><a href="#解压zip包" class="headerlink" title="解压zip包"></a>解压zip包</h2><p>下载完成之后，右键解压zip包，并将解压出来的文件夹重命名为<strong>mysql-5.7.16</strong>，然后将该文件夹剪切到 <strong>D:\Program Files (x86)</strong>目录下(该路径为你想让mysql安装的路径)</p>
+<p><img src="http://img.blog.csdn.net/20161107134105007" alt="安装路径"></p>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>在开始安装之前，需要配置好环境变量。右键<strong>我的电脑</strong>→<strong>属性</strong>→<strong>高级系统设置</strong>→<strong>环境变量</strong>。找到系统变量中的path，点击“编辑”，将刚才mysql-5.7.16文件夹下的bin的路径加入到其中。由于win10中每个环境变量是分开的，所以直接新建一个即可，对于win7和win8的系统，需要先添加一个<strong>;</strong>后再将路径加在后面。（注意不要把原先的内容删除，是追加）</p>
+<p><img src="http://img.blog.csdn.net/20161107134347260" alt="添加环境变量"></p>
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>配置完环境变量之后，需要先修改配置文件的信息。配置文件名为<strong>my-default.ini</strong>，该文件就在mysql-5.7.16目录下。打开该文件，可以看到在17-21行有basedir,datadir,port等信息。将basedir修改为mysql-5.7.16的路径，datadir为mysql-5.7.16路径再加上<strong>\data</strong>.Port端口设置为3306.并将前面的注释符号<strong>#</strong>删除。</p>
+<p><img src="http://img.blog.csdn.net/20161107134519293" alt="修改配置文件"></p>
+<h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><p>以管理员的身份运行cmd窗口，win10系统右键左下角的微软图标，可以看到<strong>命令提示符(管理员)</strong>这一项。然后cd进入到mysql-5.7.16的bin目录下。如果存放目录和我一样，使用<strong>d:</strong>切换到D盘，请注意<strong>Program Files (x86)</strong>需要用双引号括起来，且在s和(间存在一个空格。若没有管理员权限，则安装时会出现错误。</p>
+<p><img src="http://img.blog.csdn.net/20161107134747044" alt="路径切换"></p>
+<p>然后，输入mysqld -install安装。成功的话，会出现如下提示：</p>
+<p><img src="http://img.blog.csdn.net/20161107134829185" alt="安装mysql"></p>
+<p>如果要删除，则使用 mysqld -remove命令</p>
+<p><img src="http://img.blog.csdn.net/20161107135227177" alt="删除mysql"></p>
+<h2 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h2><p>安装完成之后，直接使用<strong>net start mysql</strong>或者<strong>mysqld –console</strong>启动时会出现错误提示，原因在于没有初始化数据库。在这之前，你可以查看mysql-5.7.16目录，此时，目录下是不存在data文件夹的。<br>使用mysqld –initialize 初始化数据库，完成之后，可以看到，在mysql-5.7.16目录下出现了data文件夹。</p>
+<h2 id="运行MySQL"><a href="#运行MySQL" class="headerlink" title="运行MySQL"></a>运行MySQL</h2><p>使用net start mysql 来运行。启动成功后 输入mysql -u root -p来进入数据库。输入密码出直接按回车进入。（部分默认回车）。如果出现错误，则查看data文件夹下的.err文件，查看初始化数据库时产生的临时密码。在靠近上方的部分或者直接搜索err查找文件。</p>
+<p><img src="http://img.blog.csdn.net/20161107134913764" alt="运行"></p>
+<p><img src="http://img.blog.csdn.net/20161107134958049" alt="查看临时密码"></p>
+<p>输入密码后进入成功，输入exit退出。</p>
+<p><img src="http://img.blog.csdn.net/20161107135112327" alt="进入成功"></p>
+<h2 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h2><p>到上一步位置，MySQL的安装算是完成，但是你会发现，使用时会出现1820的错误提示。让你修改密码才能执行命令。<br>1) set password = password(“新密码”);<br>2) alert user ‘root’@’localhost’password expire never;<br>3) flush privileges;<br>使用上面三个语句修改密码，其中，新密码为你想设置的新的密码，且注意没一句命令最后需要加英文分号（半角），然后exit退出即可。</p>
+<p><img src="http://img.blog.csdn.net/20161107135142577" alt="修改密码"></p>
+<p>至此，MySQL的安装过程全部完成，可以开心的使用MySQL了。</p>
 
       
     </div>
@@ -317,13 +349,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/03/15/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a href="/2016/11/07/Win10下MySQL5.7.16zip包安装教程/">在windows下使用zip包安装MySQL5.7.16</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">郑斯达</a></p>
-        <p><span>发布时间:</span>2017-03-15, 10:08:36</p>
-        <p><span>最后更新:</span>2017-03-15, 23:40:05</p>
+        <p><span>发布时间:</span>2016-11-07, 20:00:39</p>
+        <p><span>最后更新:</span>2017-03-15, 23:53:52</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/03/15/hello-world/" title="Hello World">http://yoursite.com/2017/03/15/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/15/hello-world/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/11/07/Win10下MySQL5.7.16zip包安装教程/" title="在windows下使用zip包安装MySQL5.7.16">http://yoursite.com/2016/11/07/Win10下MySQL5.7.16zip包安装教程/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/11/07/Win10下MySQL5.7.16zip包安装教程/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -336,15 +368,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/03/15/hexo学习/">
-                    hexo学习
+                <a href="/2016/11/14/中缀表达式转后缀表达式/">
+                    中缀表达式转后缀表达式
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/11/14/C-C++的中缀转后缀并求值的实现/">
-                    简单的中缀转后缀并求值的C/C++实现
+                <a href="/2016/11/06/语法分析-左递归的消除/">
+                    语法分析--左递归的消除
                 </a>
             </div>
         
@@ -356,7 +388,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载zip包"><span class="toc-number">1.</span> <span class="toc-text">下载zip包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解压zip包"><span class="toc-number">2.</span> <span class="toc-text">解压zip包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置环境变量"><span class="toc-number">3.</span> <span class="toc-text">配置环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改配置文件"><span class="toc-number">4.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装MySQL"><span class="toc-number">5.</span> <span class="toc-text">安装MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化数据库"><span class="toc-number">6.</span> <span class="toc-text">初始化数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行MySQL"><span class="toc-number">7.</span> <span class="toc-text">运行MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改密码"><span class="toc-number">8.</span> <span class="toc-text">修改密码</span></a></li></ol>
         
     </div>
     <style>
@@ -392,7 +424,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Hello World　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"在windows下使用zip包安装MySQL5.7.16　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -408,7 +440,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/15/hello-world/" data-title="Hello World" data-url="http://yoursite.com/2017/03/15/hello-world/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/11/07/Win10下MySQL5.7.16zip包安装教程/" data-title="在windows下使用zip包安装MySQL5.7.16" data-url="http://yoursite.com/2016/11/07/Win10下MySQL5.7.16zip包安装教程/"></div>
     <script>
         var duoshuoQuery = {short_name:"null"};
         var loadComment = function(){
@@ -431,7 +463,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/03/15/hexo学习/" title="上一篇: hexo学习">
+            <a href="/2016/11/14/中缀表达式转后缀表达式/" title="上一篇: 中缀表达式转后缀表达式">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -439,7 +471,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/11/14/C-C++的中缀转后缀并求值的实现/" title="下一篇: 简单的中缀转后缀并求值的C/C++实现">
+            <a href="/2016/11/06/语法分析-左递归的消除/" title="下一篇: 语法分析--左递归的消除">
                 <i class="fa fa-angle-right"></i>
             </a>
         
