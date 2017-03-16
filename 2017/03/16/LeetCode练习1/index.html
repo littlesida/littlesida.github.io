@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="左递归的消除如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。">
+<meta name="description" content="这是在LeetCode上做题的第一次记录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="语法分析--左递归的消除">
-<meta property="og:url" content="http://yoursite.com/2016/11/06/语法分析-左递归的消除/index.html">
+<meta property="og:title" content="LeetCode练习1">
+<meta property="og:url" content="http://yoursite.com/2017/03/16/LeetCode练习1/index.html">
 <meta property="og:site_name" content="littlesida|郑斯达的博客">
-<meta property="og:description" content="左递归的消除如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。">
-<meta property="og:updated_time" content="2017-03-15T15:58:43.998Z">
+<meta property="og:description" content="这是在LeetCode上做题的第一次记录">
+<meta property="og:updated_time" content="2017-03-16T08:38:41.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="语法分析--左递归的消除">
-<meta name="twitter:description" content="左递归的消除如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。">
+<meta name="twitter:title" content="LeetCode练习1">
+<meta name="twitter:description" content="这是在LeetCode上做题的第一次记录">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>语法分析--左递归的消除 | littlesida|郑斯达的博客</title>
+<title>LeetCode练习1 | littlesida|郑斯达的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -264,11 +264,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-语法分析-左递归的消除" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-LeetCode练习1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/11/06/语法分析-左递归的消除/" class="article-date">
-      <time datetime="2016-11-06T08:54:34.000Z" itemprop="datePublished">2016-11-06</time>
+      <a href="/2017/03/16/LeetCode练习1/" class="article-date">
+      <time datetime="2017-03-16T08:20:52.000Z" itemprop="datePublished">2017-03-16</time>
 </a>
 
 
@@ -283,7 +283,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      语法分析--左递归的消除
+      LeetCode练习1
     </h1>
   
 
@@ -294,7 +294,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编译原理/">编译原理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语法分析/">语法分析</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/easy/">easy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -304,31 +304,23 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="左递归的消除"><a href="#左递归的消除" class="headerlink" title="左递归的消除"></a>左递归的消除</h2><p>如果自一个文法中，存在一个非终端符号A，使得对某个串α，存在一个推导A→(*)Aα.(其中 →(*)表示可以经过多步推导。)则该文法为左递归文法(left recursive).由于自顶向下语法分析方法不能处理左递归的文法，因此需要一个转换方法来消除左递归。</p>
+        <p>这是在LeetCode上做题的第一次记录</p>
 <a id="more"></a>
-<blockquote>
-<p>对于左递归的产生式 A → Aα | β, 替换为非左递归的产生式如下(其中，ε表示空串)：<br>A → βA’<br>A’ → αA’ | ε</p>
-</blockquote>
-<p>这样的替换不会改变可从A推导得到的串的集合（证明省略）。该规则本身已经足够用来处理许多文法。</p>
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><blockquote>
-<p>对文法<br>E → E+T | T<br>T → T*F | F<br>F → (E) | id</p>
-</blockquote>
-<p>通过使用上述的方法，将其转换为非左递归的文法，结果如下：</p>
-<blockquote>
-<p>E → TE’<br>E’ → +TE’ | ε<br>T → FT’+<br>T’ → +FT’ | ε<br>F → (E) | id</p>
-</blockquote>
-<p>在上述过程中，E → E+T | T被替换为E→TE’ 和E’ → +TE’|ε。类似的，T和T’的新产生式也是通过消除立即左递归得到的。</p>
-<h2 id="FIRST和FOLLOW集"><a href="#FIRST和FOLLOW集" class="headerlink" title="FIRST和FOLLOW集"></a>FIRST和FOLLOW集</h2><p>在语法分析部分，使用自顶向下和自底向上的语法分析器的构造可以使用文法G相关的两个函数，即FIRST和FOLLOW。</p>
-<h3 id="FIRST"><a href="#FIRST" class="headerlink" title="FIRST"></a>FIRST</h3><p>FIRST(α)被定义为可从α推导得到的串的首符号的集合，其中α是任意的文法符号串。如果α→(*)ε,那么ε也在FIRST(α)中。<br><strong>FIRST集的产生规则</strong>。计算各个文法符号X的FIRST(X)时，运用下面的规则，知道没有新的终端符号或ε可以被加入到任何的FIRST集合中为止：</p>
-<blockquote>
-<p>1) 如果X是一个终端字符，那么FIRST(X)=X<br>2) 如果X是一个非终端字符，且X→Y1Y2Y3…Yk是一个产生式，其中k≥1，那么如果对于某个i，a在FIRST中(Yi)中且ε在所有FIRST(Y1),FIRST(Y2)..FIRST(Yi-1)中，就把a加入到FIRST(X)中。<strong>Y1Y2Y3..Yk Yi 中的123ki表示的为小标 而不是终端符号</strong><br>3) 如果X→ε是一个产生式，那么将ε加入到FIRST(X)中。</p>
-</blockquote>
-<p><strong>对于第二条规则，也就是说，FIRST(Y1)中的每个元素都在FIRST(X)中，且，如果FIRST(Y1)中存在ε(空串)，则FIRST(Y2)也存在FIRST(X).对后面的同理</strong></p>
-<h3 id="FOLLOW"><a href="#FOLLOW" class="headerlink" title="FOLLOW"></a>FOLLOW</h3><p>对于非终端符号，FOLLOW(A)被定义为可能在某些句型中紧跟在A右边的终端字符的集合。例如，如果有S→αAaβ(其中α，β是文法符号)，那么终端符号a就在FOLLOW(A)中。如果A是某些句型的最右符号，则$也在FOLLOW(A)中。其中$为特殊的“结束标记”符号。<br><strong>FOLLOW集的产生规则</strong>计算各个文法符号X的FOLLOW(A)时，运用下面的规则，知道没有新的终端符号可以被加入到任何的FOLLOW集合中为止：</p>
-<blockquote>
-<p>1) 将$放入到FOLLOW(S)中，其中S是开始符号，而$是输入右端的结束标记<br>2) 如果存在一个产生式A→αBβ,那么FIRST(β)中除了ε外的所有符号都在FOLLOW(B)中。<br>3) 如果存在一个产生式A→αB,或存在产生式A→αBβ且FIRST(β)包含ε，那么FOLLOW(A)中的所有符号都在FOLLOW(B)中。</p>
-</blockquote>
-<h2 id="相关例子等待更新。"><a href="#相关例子等待更新。" class="headerlink" title="相关例子等待更新。"></a>相关例子等待更新。</h2>
+<h2 id="LeetCode-NO-1-two-Sum"><a href="#LeetCode-NO-1-two-Sum" class="headerlink" title="LeetCode NO.1 two Sum"></a>LeetCode NO.1 two Sum</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.<br>You may assume that each input would have exactly one solution, and you may not use the same element twice.<br>Example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Given nums = [2, 7, 11, 15], target = 9,</div><div class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</div><div class="line">return [0, 1].</div></pre></td></tr></table></figure></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>提要要求从给定的数组中找出两个数之和等于目标值。暴力法对此题目是会超时的。因此需要稍微简化一下。由于一定有解，且只有两个数的和，因此可以看成<strong>在数组中找到target减去某个值的结果</strong>。使用map，令值为key，index为map的value。使用find函数即可快速解决问题。<br><a href="https://github.com/littlesida/LeetCode/blob/master/twoSum.cpp" target="_blank" rel="external">详细代码</a>见github。</p>
+<h2 id="LeetCode-NO-167-two-Sum-2"><a href="#LeetCode-NO-167-two-Sum-2" class="headerlink" title="LeetCode NO.167 two Sum 2"></a>LeetCode NO.167 two Sum 2</h2><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>Given an array of integers that is already <strong>sorted in ascending order</strong>, find two numbers such that they add up to a specific target number.</p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+<p>You may assume that each input would have exactly one solution and you may not use the same element twice.</p>
+<p>Input: numbers={2, 7, 11, 15}, target=9<br>Output: index1=1, index2=2</p>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>此题于NO.1起始是一样的，只不过其下标不是从0开始，因此需要+1.<br><a href="https://github.com/littlesida/LeetCode/blob/master/twoSum2.cpp" target="_blank" rel="external">详细代码</a>见github。</p>
+<h2 id="LeetCode-NO-7-Reverse-Integer"><a href="#LeetCode-NO-7-Reverse-Integer" class="headerlink" title="LeetCode NO.7 Reverse Integer"></a>LeetCode NO.7 Reverse Integer</h2><h3 id="Description-2"><a href="#Description-2" class="headerlink" title="Description"></a>Description</h3><p>Reverse digits of an integer.</p>
+<p>Example1: x = 123, return 321<br>Example2: x = -123, return -321</p>
+<p>Note:<br>The input is assumed to be a 32-bit signed integer. Your function should <strong>return 0 when the reversed integer overflows</strong>.</p>
+<h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>此题于一般的数组翻转差不多，主要是需要添加判断翻转后是否溢出。因此可以在每次翻转一个数字后判断新的数字的最低位和刚才加上去的是否相等。<br><a href="https://github.com/littlesida/LeetCode/blob/master/RecerseInteger.cpp" target="_blank" rel="external">详细代码</a>见github。</p>
+<h2 id="LeetCode-NO-9-Palindrome-Number"><a href="#LeetCode-NO-9-Palindrome-Number" class="headerlink" title="LeetCode NO.9 Palindrome Number"></a>LeetCode NO.9 Palindrome Number</h2><h3 id="Description-3"><a href="#Description-3" class="headerlink" title="Description"></a>Description</h3><p>Determine whether an integer is a palindrome. Do this without extra space.</p>
+<h3 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h3><p>一道简单的判断是否为回文数的问题，在之前判断是否为回文数时总是把整个数字翻转后比较是否相等，今天在别人的答案里面看到了只需要翻转一半即可的答案。非常棒。</p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><p>下面贴出只需要翻转一半的代码，具体<a href="https://github.com/littlesida/LeetCode/blob/master/PalindromeNumber.cpp" target="_blank" rel="external">两种代码</a>见github。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    bool isPalindrome(int x) &#123;</div><div class="line">        if(x&lt;0|| (x!=0 &amp;&amp;x%10==0)) return false;</div><div class="line">        int sum=0;</div><div class="line">        while(x&gt;sum)  // just reversing till half</div><div class="line">        &#123;</div><div class="line">            sum = sum*10+x%10;</div><div class="line">            x = x/10;</div><div class="line">        &#125;</div><div class="line">        return (x==sum)||(x==sum/10);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -336,13 +328,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/11/06/语法分析-左递归的消除/">语法分析--左递归的消除</a></p>
+        <p><span>本文标题:</span><a href="/2017/03/16/LeetCode练习1/">LeetCode练习1</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">郑斯达</a></p>
-        <p><span>发布时间:</span>2016-11-06, 16:54:34</p>
-        <p><span>最后更新:</span>2017-03-15, 23:58:43</p>
+        <p><span>发布时间:</span>2017-03-16, 16:20:52</p>
+        <p><span>最后更新:</span>2017-03-16, 16:38:41</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/11/06/语法分析-左递归的消除/" title="语法分析--左递归的消除">http://yoursite.com/2016/11/06/语法分析-左递归的消除/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/11/06/语法分析-左递归的消除/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/16/LeetCode练习1/" title="LeetCode练习1">http://yoursite.com/2017/03/16/LeetCode练习1/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/16/LeetCode练习1/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -354,16 +346,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/11/07/Win10下MySQL5.7.16zip包安装教程/">
-                    在windows下使用zip包安装MySQL5.7.16
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/10/14/词法分析☞正则表达式/">
-                    正则表达式
+                <a href="/2017/03/16/Git学习笔记/">
+                    Git学习笔记
                 </a>
             </div>
         
@@ -375,7 +361,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#左递归的消除"><span class="toc-number">1.</span> <span class="toc-text">左递归的消除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-number">1.1.</span> <span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FIRST和FOLLOW集"><span class="toc-number">2.</span> <span class="toc-text">FIRST和FOLLOW集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FIRST"><span class="toc-number">2.1.</span> <span class="toc-text">FIRST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FOLLOW"><span class="toc-number">2.2.</span> <span class="toc-text">FOLLOW</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关例子等待更新。"><span class="toc-number">3.</span> <span class="toc-text">相关例子等待更新。</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LeetCode-NO-1-two-Sum"><span class="toc-number">1.</span> <span class="toc-text">LeetCode NO.1 two Sum</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-number">1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析"><span class="toc-number">1.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LeetCode-NO-167-two-Sum-2"><span class="toc-number">2.</span> <span class="toc-text">LeetCode NO.167 two Sum 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description-1"><span class="toc-number">2.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析-1"><span class="toc-number">2.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LeetCode-NO-7-Reverse-Integer"><span class="toc-number">3.</span> <span class="toc-text">LeetCode NO.7 Reverse Integer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description-2"><span class="toc-number">3.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析-2"><span class="toc-number">3.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LeetCode-NO-9-Palindrome-Number"><span class="toc-number">4.</span> <span class="toc-text">LeetCode NO.9 Palindrome Number</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description-3"><span class="toc-number">4.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析-3"><span class="toc-number">4.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Code"><span class="toc-number">4.3.</span> <span class="toc-text">Code</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -411,7 +397,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"语法分析--左递归的消除　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"LeetCode练习1　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -427,7 +413,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2016/11/06/语法分析-左递归的消除/" data-title="语法分析--左递归的消除" data-url="http://yoursite.com/2016/11/06/语法分析-左递归的消除/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/16/LeetCode练习1/" data-title="LeetCode练习1" data-url="http://yoursite.com/2017/03/16/LeetCode练习1/"></div>
     <script>
         var duoshuoQuery = {short_name:"null"};
         var loadComment = function(){
@@ -450,15 +436,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/11/07/Win10下MySQL5.7.16zip包安装教程/" title="上一篇: 在windows下使用zip包安装MySQL5.7.16">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/10/14/词法分析☞正则表达式/" title="下一篇: 正则表达式">
+            <a href="/2017/03/16/Git学习笔记/" title="下一篇: Git学习笔记">
                 <i class="fa fa-angle-right"></i>
             </a>
         
