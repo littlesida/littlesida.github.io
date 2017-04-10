@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="littlesida|郑斯达的博客">
 <meta property="og:description" content="TCP协议是面向连接的，因为在一个应用进程可以开始向另一个应用进程发送数据之前，这两个进程必须先握手。TCP是一种可靠的数据传输模式。TCP连接提供的是全双工服务(fuu-duplex service)：如果一台主机上的进程A与另一台主机上的进程B存在一条TCP连接，那么应用层数据就可以在从进程A流向B的同时，也从进程B流向进程A。TCP协议是**点对点(point-to-point)的，即在单个">
 <meta property="og:image" content="http://yoursite.com/./img/三次握手.png">
-<meta property="og:updated_time" content="2017-04-10T18:39:24.739Z">
+<meta property="og:updated_time" content="2017-04-10T18:43:11.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP协议的三次握手与四次挥手">
 <meta name="twitter:description" content="TCP协议是面向连接的，因为在一个应用进程可以开始向另一个应用进程发送数据之前，这两个进程必须先握手。TCP是一种可靠的数据传输模式。TCP连接提供的是全双工服务(fuu-duplex service)：如果一台主机上的进程A与另一台主机上的进程B存在一条TCP连接，那么应用层数据就可以在从进程A流向B的同时，也从进程B流向进程A。TCP协议是**点对点(point-to-point)的，即在单个">
@@ -315,6 +315,7 @@
       
           
         <p>TCP协议是<strong>面向连接</strong>的，因为在一个应用进程可以开始向另一个应用进程发送数据之前，这两个进程必须先握手。TCP是一种可靠的数据传输模式。<br>TCP连接提供的是<strong>全双工服务(fuu-duplex service)</strong>：如果一台主机上的进程A与另一台主机上的进程B存在一条TCP连接，那么应用层数据就可以在从进程A流向B的同时，也从进程B流向进程A。<br>TCP协议是**点对点(point-to-point)的，即在单个发送方与单个接收方之间的连接。</p>
+<a id="more"></a>
 <h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>TCP连接的建立过程成为<strong>三次握手</strong>。之所以成为三次握手，是因为连接的建立需要发送三次报文(客户端2次，服务端1次)。</p>
 <ol>
 <li>客户机端的TCP首先向向服务器端的TCP发送一个特殊的TCP报文段。该报文段中不包含应用层数据，但是报文段的首部中的一个标志位(SYN)被置为1.因此，这个特殊的报文段被称为SYN报文段。另外，客户机会选择一个其起始序号(client_isn)，并将其放置到该起始TCP SYN报文段的序号字段中。该报文段会被封装在一个IP数据库中，并发送给服务器。</li>
@@ -341,7 +342,7 @@
         <p><span>本文标题:</span><a href="/2017/04/11/TCP协议的三次握手与四次挥手/">TCP协议的三次握手与四次挥手</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">郑斯达</a></p>
         <p><span>发布时间:</span>2017-04-11, 01:53:40</p>
-        <p><span>最后更新:</span>2017-04-11, 02:39:24</p>
+        <p><span>最后更新:</span>2017-04-11, 02:43:11</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/04/11/TCP协议的三次握手与四次挥手/" title="TCP协议的三次握手与四次挥手">http://yoursite.com/2017/04/11/TCP协议的三次握手与四次挥手/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/04/11/TCP协议的三次握手与四次挥手/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
