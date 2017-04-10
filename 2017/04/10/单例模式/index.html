@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="郑斯达" />
+
+
+
+<meta name="description" content="单例模式是一种常见的设计模式，其目的是保证一个类仅有一个实例。并提供一个全局访问点，该实例被所有的程序所共享。可能有人会想到，直接使用一个全局变量，但是使用全局变量有着他的缺陷。使用全局对象能够保证方便地访问实例，但是不能保证只声明一个对象——也就是说除了一个全局实例外，仍然能创建相同类的本地实例。在很多的应用场景都会有只要一个实例的需求，例如，在程序的日志中，每次更新日志都去new一个新的对象，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单例模式">
+<meta property="og:url" content="http://yoursite.com/2017/04/10/单例模式/index.html">
+<meta property="og:site_name" content="littlesida|郑斯达的博客">
+<meta property="og:description" content="单例模式是一种常见的设计模式，其目的是保证一个类仅有一个实例。并提供一个全局访问点，该实例被所有的程序所共享。可能有人会想到，直接使用一个全局变量，但是使用全局变量有着他的缺陷。使用全局对象能够保证方便地访问实例，但是不能保证只声明一个对象——也就是说除了一个全局实例外，仍然能创建相同类的本地实例。在很多的应用场景都会有只要一个实例的需求，例如，在程序的日志中，每次更新日志都去new一个新的对象，">
+<meta property="og:image" content="http://yoursite.com/img/Singleton.png">
+<meta property="og:updated_time" content="2017-04-10T09:07:09.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="单例模式">
+<meta name="twitter:description" content="单例模式是一种常见的设计模式，其目的是保证一个类仅有一个实例。并提供一个全局访问点，该实例被所有的程序所共享。可能有人会想到，直接使用一个全局变量，但是使用全局变量有着他的缺陷。使用全局对象能够保证方便地访问实例，但是不能保证只声明一个对象——也就是说除了一个全局实例外，仍然能创建相同类的本地实例。在很多的应用场景都会有只要一个实例的需求，例如，在程序的日志中，每次更新日志都去new一个新的对象，">
+<meta name="twitter:image" content="http://yoursite.com/img/Singleton.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="littlesida|郑斯达的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/icon.jpg">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>单例模式 | littlesida|郑斯达的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/head.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">郑斯达</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">记录点啥</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:sidazheng1996@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="http://weibo.com/u/5734373032?refer_flag=1001030101_" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/littlesida" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/baidu_31497293" title="CSDN"></a>
+                            
+                                <a class="fa QQ" href="/1289565858" title="QQ"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux内核/">Linux内核</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/easy/">easy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/嵌入式/">嵌入式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译原理/">编译原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/词法分析/">词法分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法分析/">语法分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件/">软件</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一个大三的程序猿,想找后端或嵌入式的实习</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">郑斯达</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/head.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">郑斯达</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">记录点啥</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:sidazheng1996@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/5734373032?refer_flag=1001030101_" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/littlesida" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/baidu_31497293" title="CSDN"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="/1289565858" title="QQ"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-单例模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/10/单例模式/" class="article-date">
+      <time datetime="2017-04-10T08:30:41.000Z" itemprop="datePublished">2017-04-10</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      单例模式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>单例模式是一种常见的设计模式，其目的是保证一个类仅有一个实例。并提供一个全局访问点，该实例被所有的程序所共享。可能有人会想到，直接使用一个全局变量，但是使用全局变量有着他的缺陷。使用全局对象能够保证方便地访问实例，但是不能保证只声明一个对象——也就是说除了一个全局实例外，仍然能创建相同类的本地实例。在很多的应用场景都会有<strong>只要一个实例</strong>的需求，例如，在程序的日志中，每次更新日志都去new一个新的对象，操作后再delete掉，这样会很麻烦。在停车场的位置管理中，空位的记录等等。</p>
+<a id="more"></a>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>单例模式保证一个类只有一个实例，并提供一个访问它的全局访问点。首先，需要保证一个类只有一个实例；在类中，要构造一个实例，就必须调用类的构造函数，如此，为了防止在外部调用类的构造函数而构造实例，需要将构造函数的访问权限标记为protected或private；其次，需要提供要给全局访问点，就需要在类中定义一个static函数，返回在类内部唯一构造的实例。</p>
+<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>单例模式通过类本身来管理其唯一实例。唯一的实例是类的一个普通对象，但设计这个类时，让它只能创建一个实例并提供对此实例的全局访问。唯一实例类在静态成员函数中隐藏创建实例的操作。习惯上把这个成员函数叫做GetInstance()，它的返回值是唯一实例的指针。单例类的UML如下：</p>
+<p><img src="/img/Singleton.png" alt="Singleton的UML图"></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>一个简答的单例类的实现如下:</p>
+<p>Singleton.h<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">#ifndef __SINGLETON_H_</div><div class="line">#define __SINGLETON_H_</div><div class="line"> </div><div class="line">#include &lt;iostream&gt;</div><div class="line"> </div><div class="line">/* disallow copy constructor and assignment operator */</div><div class="line">#define DISALLOW_COPY_AND_ASSIGN(TypeName) \</div><div class="line">  TypeName(const TypeName&amp;);               \</div><div class="line">  void operator=(const TypeName&amp;)</div><div class="line"> </div><div class="line">class Singleton &#123;</div><div class="line">  public:</div><div class="line">    /*</div><div class="line">     * get the unique instance</div><div class="line">     */</div><div class="line">    static Singleton* GetInstance();</div><div class="line"> </div><div class="line">    /*</div><div class="line">     * delete the instance</div><div class="line">     * if the instance not exist, return false</div><div class="line">     */</div><div class="line">    static bool DeleteInstance();</div><div class="line">    void SetValue(int value);</div><div class="line">    int GetValue();</div><div class="line"> </div><div class="line">  private:</div><div class="line">    int value_;  // default 0</div><div class="line">    ~Singleton() &#123;&#125;</div><div class="line">    Singleton();</div><div class="line">    static Singleton* instance_;</div><div class="line">    DISALLOW_COPY_AND_ASSIGN(Singleton);</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">#endif</div></pre></td></tr></table></figure></p>
+<p>Singleton.cpp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">#include &quot;singleton.h&quot;</div><div class="line"> </div><div class="line">Singleton* Singleton::instance_ = NULL;</div><div class="line"> </div><div class="line">Singleton* Singleton::GetInstance() &#123;</div><div class="line">    if (instance_ == NULL) &#123;</div><div class="line">        instance_ = new Singleton();</div><div class="line">    &#125;</div><div class="line">    return instance_;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">bool Singleton::DeleteInstance() &#123;</div><div class="line">    if (instance_ == NULL)</div><div class="line">        return false;</div><div class="line">    delete instance_;</div><div class="line">    instance_ = NULL;</div><div class="line">    return true;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">void Singleton::SetValue(int value) &#123;</div><div class="line">    value_ = value;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">int Singleton::GetValue() &#123;</div><div class="line">    return value_;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">Singleton::Singleton() &#123;</div><div class="line">    value_ = 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>简单的测试文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &quot;singleton.h&quot;</div><div class="line">void check_delete(bool result) &#123;</div><div class="line">    if (result)</div><div class="line">        std::cout &lt;&lt; &quot;Delete Successfully!&quot; &lt;&lt; std::endl;</div><div class="line">    else</div><div class="line">        std::cout &lt;&lt; &quot;Delete Failed!&quot; &lt;&lt; std::endl;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">int main() &#123;</div><div class="line">    int value;</div><div class="line">    int cnt;  // count to print</div><div class="line">    std::cin &gt;&gt; value &gt;&gt; cnt;</div><div class="line">    Singleton* single[2] = &#123;NULL, NULL&#125;;</div><div class="line">    single[0] = Singleton::GetInstance();</div><div class="line">    single[1] = Singleton::GetInstance();</div><div class="line"> </div><div class="line">    single[0]-&gt;SetValue(value);</div><div class="line">    for (int i = 0; i &lt; cnt; i++)</div><div class="line">        std::cout &lt;&lt; single[i]-&gt;GetValue() &lt;&lt; std::endl;</div><div class="line"> </div><div class="line">    std::cin &gt;&gt; value &gt;&gt; cnt;</div><div class="line">    single[1]-&gt;SetValue(value);</div><div class="line">    for (int i = 0; i &lt; cnt; i++)</div><div class="line">        std::cout &lt;&lt; single[i]-&gt;GetValue() &lt;&lt; std::endl;</div><div class="line"> </div><div class="line">    bool del;</div><div class="line">    std::cin &gt;&gt; del;</div><div class="line">    if (del)</div><div class="line">        check_delete(single[0]-&gt;DeleteInstance());</div><div class="line">    check_delete(single[1]-&gt;DeleteInstance());</div><div class="line"> </div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="使用单例模式进行管理"><a href="#使用单例模式进行管理" class="headerlink" title="使用单例模式进行管理"></a>使用单例模式进行管理</h2><p>使用单例模式进行管理的简单例子。</p>
+<p>Job.h</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> * declaration for class Job..</div><div class="line"> */</div><div class="line">#ifndef JOB_H</div><div class="line"></div><div class="line">#include&lt;string&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">class Job &#123;</div><div class="line">    public:</div><div class="line">        explicit Job(int priority = 0);</div><div class="line">        void setId(int id);</div><div class="line">        int getId() const;</div><div class="line">        void setPriority(int priority);</div><div class="line">        int getPriority() const;</div><div class="line">        void setNext(Job *job);</div><div class="line">        Job *getNext() const;</div><div class="line">        string toString();</div><div class="line">    private:</div><div class="line">        static int number;</div><div class="line">        int id;</div><div class="line">        int priority;</div><div class="line">        Job *nextJob;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">#endif</div></pre></td></tr></table></figure>
+<p>Job.cpp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">#include&lt;iostream&gt;</div><div class="line">#include&lt;sstream&gt;</div><div class="line">#include &quot;Job.h&quot;</div><div class="line">/*</div><div class="line"> * definition for class Job..</div><div class="line"> */</div><div class="line">int Job::number = 0;</div><div class="line"></div><div class="line">Job::Job(int priority) &#123;</div><div class="line">    nextJob = NULL;</div><div class="line">    this-&gt;priority = priority;</div><div class="line">    id = number++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void Job::setId(int id) &#123;</div><div class="line">    this-&gt;id = id;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int Job::getId() const &#123;</div><div class="line">    return id;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void Job::setPriority(int priority) &#123;</div><div class="line">    this-&gt;priority = priority;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int Job::getPriority() const &#123;</div><div class="line">    return priority;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void Job::setNext(Job *job) &#123;</div><div class="line">    nextJob = job;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Job* Job::getNext() const &#123;</div><div class="line">    return nextJob;</div><div class="line">&#125;</div><div class="line"></div><div class="line">string Job::toString() &#123;</div><div class="line">    stringstream ss;</div><div class="line">    ss &lt;&lt; &quot;[&quot; &lt;&lt; id &lt;&lt; &quot;:&quot; &lt;&lt; priority &lt;&lt; &quot;]&quot;;</div><div class="line">    return ss.str();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>JobManager.h (单例类)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">#ifndef JOBMANAGER_H</div><div class="line">#define JOBMANAGER_H</div><div class="line"></div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &quot;Job.h&quot;</div><div class="line"></div><div class="line">// disallow copy constructor and assignment operator</div><div class="line">#define DISALLOW_COPY_AND_ASSIGN(TypeName) \</div><div class="line">  TypeName(const TypeName&amp;);               \</div><div class="line">  void operator=(const TypeName&amp;)</div><div class="line"></div><div class="line">class JobManager &#123;</div><div class="line">    public:</div><div class="line">        // get the unique instance</div><div class="line">        static JobManager* getInstance();</div><div class="line">        static bool deleteInstance();</div><div class="line"></div><div class="line">        void addJob(int priority = 0);</div><div class="line">        void finishOneJob();</div><div class="line">        void sortJob();</div><div class="line">        void printJob();</div><div class="line">        int getNumOfJob();</div><div class="line">        void clear();</div><div class="line"></div><div class="line">    private:</div><div class="line">        Job * jobFrontPointer;</div><div class="line">        ~JobManager();</div><div class="line">        JobManager();</div><div class="line">        static JobManager* instance;</div><div class="line">        DISALLOW_COPY_AND_ASSIGN(JobManager);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">#endif</div></pre></td></tr></table></figure>
+<p>JobManeger.cpp单例类的实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;algorithm&gt;</div><div class="line">#include &quot;JobManager.h&quot;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">JobManager* JobManager::instance = NULL;</div><div class="line"></div><div class="line">JobManager* JobManager::getInstance() &#123;</div><div class="line">    if (instance == NULL) &#123;</div><div class="line">        instance = new JobManager();</div><div class="line">    &#125;</div><div class="line">    return instance;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bool JobManager::deleteInstance() &#123;</div><div class="line">    if (instance == NULL) return false;</div><div class="line">    delete instance;</div><div class="line">    instance = NULL;</div><div class="line">    return true;</div><div class="line">&#125;</div><div class="line"></div><div class="line">JobManager::JobManager() &#123;</div><div class="line">    jobFrontPointer = NULL;</div><div class="line">&#125;</div><div class="line"></div><div class="line">JobManager::~JobManager() &#123;</div><div class="line">    clear();</div><div class="line">&#125;</div><div class="line"></div><div class="line">void JobManager::addJob(int priority) &#123;</div><div class="line">    Job *tempPointer = jobFrontPointer;</div><div class="line">    if (tempPointer == NULL) &#123;</div><div class="line">        jobFrontPointer = new Job(priority);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    while (tempPointer-&gt;getNext() != NULL) &#123;</div><div class="line">        tempPointer = tempPointer-&gt;getNext();</div><div class="line">    &#125;</div><div class="line">    tempPointer-&gt;setNext(new Job(priority));</div><div class="line">&#125;</div><div class="line"></div><div class="line">void JobManager::finishOneJob() &#123;</div><div class="line">    if (jobFrontPointer == NULL) return;</div><div class="line"></div><div class="line">    Job *tempPointer = jobFrontPointer;</div><div class="line">    jobFrontPointer = jobFrontPointer-&gt;getNext();</div><div class="line">    delete tempPointer;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// user-defined compare function..</div><div class="line">bool cmp(Job *job1, Job *job2) &#123;</div><div class="line">    if (job1-&gt;getPriority() &gt; job2-&gt;getPriority()) return true;</div><div class="line">    if (job1-&gt;getPriority() &lt; job2-&gt;getPriority()) return false;</div><div class="line">    return (job1-&gt;getId() &lt; job2-&gt;getId());</div><div class="line">&#125;</div><div class="line"></div><div class="line">// sort each job according to their priority, descending..</div><div class="line">void JobManager::sortJob() &#123;</div><div class="line">    // if no or one item in queue, no need to sort it..</div><div class="line">    if (jobFrontPointer == NULL || jobFrontPointer-&gt;getNext() == NULL) return;</div><div class="line"></div><div class="line">    int nums = getNumOfJob(), i = 0;</div><div class="line">    Job *array[nums];</div><div class="line">    Job *flagPointer = jobFrontPointer;</div><div class="line">    // store each job in array..</div><div class="line">    while (flagPointer != NULL) &#123;</div><div class="line">        array[i++] = flagPointer;</div><div class="line">        flagPointer = flagPointer-&gt;getNext();</div><div class="line">    &#125;</div><div class="line">    // sort each job..</div><div class="line">    sort(array, array + nums, cmp);</div><div class="line"></div><div class="line">    array[nums - 1]-&gt;setNext(NULL);</div><div class="line"></div><div class="line">    jobFrontPointer = array[0];</div><div class="line">    flagPointer = jobFrontPointer;</div><div class="line">    for (i = 1; i &lt; nums; i++) &#123;</div><div class="line">        flagPointer-&gt;setNext(array[i]);</div><div class="line">        flagPointer = flagPointer-&gt;getNext();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void JobManager::printJob() &#123;</div><div class="line">    if (jobFrontPointer == NULL) &#123;</div><div class="line">        cout &lt;&lt; &quot;empty!&quot; &lt;&lt; endl;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    cout &lt;&lt; jobFrontPointer-&gt;toString();</div><div class="line">    Job *tempPointer = jobFrontPointer-&gt;getNext();</div><div class="line">    while (tempPointer != NULL) &#123;</div><div class="line">        cout &lt;&lt; &quot;-&gt;&quot; &lt;&lt; tempPointer-&gt;toString();</div><div class="line">        tempPointer = tempPointer-&gt;getNext();</div><div class="line">    &#125;</div><div class="line">    cout &lt;&lt; endl;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int JobManager::getNumOfJob() &#123;</div><div class="line">    int num = 0;</div><div class="line">    if (jobFrontPointer == NULL) return num;</div><div class="line"></div><div class="line">    Job *tempPointer = jobFrontPointer;</div><div class="line">    while (tempPointer-&gt;getNext() != NULL) &#123;</div><div class="line">        tempPointer = tempPointer-&gt;getNext();</div><div class="line">        num++;</div><div class="line">    &#125;</div><div class="line">    num++;</div><div class="line">    return num;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void JobManager::clear() &#123;</div><div class="line">    while (jobFrontPointer) &#123;</div><div class="line">        finishOneJob();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>简单测试main.cpp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">#include &quot;JobManager.h&quot;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line">    JobManager *manager1 = JobManager::getInstance();</div><div class="line">    JobManager *manager2 = JobManager::getInstance();</div><div class="line">    int pris[5] = &#123;234, 23, 23432, 1, 5&#125;;</div><div class="line">    for (int i = 0; i &lt; 5; i++) &#123;</div><div class="line">        manager1-&gt;addJob(pris[i]);</div><div class="line">    &#125;</div><div class="line">    manager2-&gt;printJob();</div><div class="line">    cout &lt;&lt; &quot;The number of job is: &quot; &lt;&lt; manager1-&gt;getNumOfJob() &lt;&lt; endl;</div><div class="line">    manager1-&gt;finishOneJob();</div><div class="line">    cout &lt;&lt; &quot;The number of job is: &quot; &lt;&lt; manager1-&gt;getNumOfJob() &lt;&lt; endl;</div><div class="line">    manager2-&gt;finishOneJob();</div><div class="line">    cout &lt;&lt; &quot;The number of job is: &quot; &lt;&lt; manager1-&gt;getNumOfJob() &lt;&lt; endl;</div><div class="line">    manager1-&gt;addJob();</div><div class="line">    manager1-&gt;addJob(6666);</div><div class="line">    manager1-&gt;printJob();</div><div class="line">    cout &lt;&lt; &quot;The number of job is: &quot; &lt;&lt; manager1-&gt;getNumOfJob() &lt;&lt; endl;</div><div class="line">    manager2-&gt;clear();</div><div class="line">    manager1-&gt;printJob();</div><div class="line">    cout &lt;&lt; &quot;The number of job is: &quot; &lt;&lt; manager1-&gt;getNumOfJob() &lt;&lt; endl;</div><div class="line"></div><div class="line">    int jobNum, jobPriority, deleteNum;</div><div class="line">    cin &gt;&gt; jobNum;</div><div class="line">    for (int i = 0; i &lt; jobNum; i++) &#123;</div><div class="line">        cin &gt;&gt; jobPriority;</div><div class="line">        manager2-&gt;addJob(jobPriority);</div><div class="line">    &#125;</div><div class="line">    manager1-&gt;sortJob();</div><div class="line">    manager2-&gt;printJob();</div><div class="line">    cin &gt;&gt; deleteNum;</div><div class="line">    while (deleteNum--) &#123;</div><div class="line">        manager1-&gt;finishOneJob();</div><div class="line">    &#125;</div><div class="line">    manager1-&gt;printJob();</div><div class="line">    cout &lt;&lt; &quot;The number of job is: &quot; &lt;&lt; manager2-&gt;getNumOfJob() &lt;&lt; endl;</div><div class="line"></div><div class="line">    if (JobManager::deleteInstance()) cout &lt;&lt; &quot;Delete successfully!\n&quot;;</div><div class="line">    else cout &lt;&lt; &quot;Delete failure!\n&quot;;</div><div class="line"></div><div class="line">    if (JobManager::deleteInstance()) cout &lt;&lt; &quot;Delete successfully!\n&quot;;</div><div class="line">    else cout &lt;&lt; &quot;Delete failure!\n&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>以上2个例子都来自eden</strong></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/04/10/单例模式/">单例模式</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">郑斯达</a></p>
+        <p><span>发布时间:</span>2017-04-10, 16:30:41</p>
+        <p><span>最后更新:</span>2017-04-10, 17:07:09</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/04/10/单例模式/" title="单例模式">http://yoursite.com/2017/04/10/单例模式/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/04/10/单例模式/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/04/10/动态内存new-malloc和delete-free/">
+                    动态内存new/malloc和delete/free
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#要求"><span class="toc-number">1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计"><span class="toc-number">2.</span> <span class="toc-text">设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用单例模式进行管理"><span class="toc-number">4.</span> <span class="toc-text">使用单例模式进行管理</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-4 i,
+        .toc-level-4 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"单例模式　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/04/10/单例模式/" data-title="单例模式" data-url="http://yoursite.com/2017/04/10/单例模式/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"null"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/04/10/动态内存new-malloc和delete-free/" title="下一篇: 动态内存new/malloc和delete/free">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/10/单例模式/">单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/10/动态内存new-malloc和delete-free/">动态内存new/malloc和delete/free</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/10/快排实现/">快排实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/30/Linux内核编译--向内核添加新设备/">Linux内核编译--想内核添加新设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/30/原来我一直写的是四不像的排序/">原来我一直写的是四不像的排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/C++笔记1/">C++ 笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/LeetCode练习1/">LeetCode练习1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/16/Git学习笔记/">Git学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/hexo学习/">hexo学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/15/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/14/C-C++的中缀转后缀并求值的实现/">简单的中缀转后缀并求值的C/C++实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/14/中缀表达式转后缀表达式/">中缀表达式转后缀表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/07/Win10下MySQL5.7.16zip包安装教程/">在windows下使用zip包安装MySQL5.7.16</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/06/语法分析-左递归的消除/">语法分析--左递归的消除</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/词法分析☞正则表达式/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/词法分析☞NFA语言识别/">词法分析☞NFA语言识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/词法分析小结☞词法分析器的作用/">词法分析器的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/30/词法分析☞DFA语言识别/">词法分析☞DFA语言识别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017 郑斯达
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
