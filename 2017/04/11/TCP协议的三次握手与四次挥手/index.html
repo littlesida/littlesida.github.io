@@ -15,16 +15,18 @@
 
 
 
-<meta name="description" content="它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。">
+<meta name="description" content="TCP协议是面向连接的，因为在一个应用进程可以开始向另一个应用进程发送数据之前，这两个进程必须先握手。TCP是一种可靠的数据传输模式。TCP连接提供的是全双工服务(fuu-duplex service)：如果一台主机上的进程A与另一台主机上的进程B存在一条TCP连接，那么应用层数据就可以在从进程A流向B的同时，也从进程B流向进程A。TCP协议是**点对点(point-to-point)的，即在单个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="快排实现">
-<meta property="og:url" content="http://yoursite.com/2017/04/10/快排实现/index.html">
+<meta property="og:title" content="TCP协议的三次握手与四次挥手">
+<meta property="og:url" content="http://yoursite.com/2017/04/11/TCP协议的三次握手与四次挥手/index.html">
 <meta property="og:site_name" content="littlesida|郑斯达的博客">
-<meta property="og:description" content="它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。">
-<meta property="og:updated_time" content="2017-04-09T18:20:33.256Z">
+<meta property="og:description" content="TCP协议是面向连接的，因为在一个应用进程可以开始向另一个应用进程发送数据之前，这两个进程必须先握手。TCP是一种可靠的数据传输模式。TCP连接提供的是全双工服务(fuu-duplex service)：如果一台主机上的进程A与另一台主机上的进程B存在一条TCP连接，那么应用层数据就可以在从进程A流向B的同时，也从进程B流向进程A。TCP协议是**点对点(point-to-point)的，即在单个">
+<meta property="og:image" content="http://yoursite.com/./img/三次握手.png">
+<meta property="og:updated_time" content="2017-04-10T18:39:24.739Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="快排实现">
-<meta name="twitter:description" content="它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。">
+<meta name="twitter:title" content="TCP协议的三次握手与四次挥手">
+<meta name="twitter:description" content="TCP协议是面向连接的，因为在一个应用进程可以开始向另一个应用进程发送数据之前，这两个进程必须先握手。TCP是一种可靠的数据传输模式。TCP连接提供的是全双工服务(fuu-duplex service)：如果一台主机上的进程A与另一台主机上的进程B存在一条TCP连接，那么应用层数据就可以在从进程A流向B的同时，也从进程B流向进程A。TCP协议是**点对点(point-to-point)的，即在单个">
+<meta name="twitter:image" content="http://yoursite.com/./img/三次握手.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>快排实现 | littlesida|郑斯达的博客</title>
+<title>TCP协议的三次握手与四次挥手 | littlesida|郑斯达的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -272,11 +274,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-快排实现" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-TCP协议的三次握手与四次挥手" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/04/10/快排实现/" class="article-date">
-      <time datetime="2017-04-09T18:00:23.000Z" itemprop="datePublished">2017-04-10</time>
+      <a href="/2017/04/11/TCP协议的三次握手与四次挥手/" class="article-date">
+      <time datetime="2017-04-10T17:53:40.000Z" itemprop="datePublished">2017-04-11</time>
 </a>
 
 
@@ -291,7 +293,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      快排实现
+      TCP协议的三次握手与四次挥手
     </h1>
   
 
@@ -302,7 +304,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络协议/">网络协议</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -312,10 +314,23 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">#define MAX 20</div><div class="line"></div><div class="line">void mqsort(int arr[], int l, int r);</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line">	int num[MAX];</div><div class="line">	for (int i = 0; i &lt; MAX; ++i)</div><div class="line">		cin &gt;&gt; num[i];</div><div class="line">	mqsort(num, 0, MAX-1);</div><div class="line">	for (int i = 0; i &lt; MAX; ++i)</div><div class="line">		cout &lt;&lt; num[i] &lt;&lt; &apos; &apos;;</div><div class="line">	cout &lt;&lt; endl;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">void mqsort(int arr[], int l, int r) &#123;</div><div class="line">	if (l &gt;= r) return ;</div><div class="line">	int first = l;</div><div class="line">	int last = r;</div><div class="line">	int key = arr[first];</div><div class="line">	while (first &lt; last) &#123;</div><div class="line">		while (first &lt; last &amp;&amp; arr[last] &gt; key) </div><div class="line">			--last;</div><div class="line">		arr[first] = arr[last];</div><div class="line">		while (first &lt; last &amp;&amp; arr[first] &lt; key)</div><div class="line">			++first;</div><div class="line">		arr[last] = arr[first];</div><div class="line">	&#125;</div><div class="line">	arr[first] = key;</div><div class="line">	mqsort(arr, l, first-1);</div><div class="line">	mqsort(arr, last+1, r);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+        <p>TCP协议是<strong>面向连接</strong>的，因为在一个应用进程可以开始向另一个应用进程发送数据之前，这两个进程必须先握手。TCP是一种可靠的数据传输模式。<br>TCP连接提供的是<strong>全双工服务(fuu-duplex service)</strong>：如果一台主机上的进程A与另一台主机上的进程B存在一条TCP连接，那么应用层数据就可以在从进程A流向B的同时，也从进程B流向进程A。<br>TCP协议是**点对点(point-to-point)的，即在单个发送方与单个接收方之间的连接。</p>
+<h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>TCP连接的建立过程成为<strong>三次握手</strong>。之所以成为三次握手，是因为连接的建立需要发送三次报文(客户端2次，服务端1次)。</p>
+<ol>
+<li>客户机端的TCP首先向向服务器端的TCP发送一个特殊的TCP报文段。该报文段中不包含应用层数据，但是报文段的首部中的一个标志位(SYN)被置为1.因此，这个特殊的报文段被称为SYN报文段。另外，客户机会选择一个其起始序号(client_isn)，并将其放置到该起始TCP SYN报文段的序号字段中。该报文段会被封装在一个IP数据库中，并发送给服务器。</li>
+<li>当包含TCP SYN报文段的IP数据报到达服务器主机，服务器会从该数据报中提取出TCP SYN报文段，为该TCP连接分配TCP缓存和变量，并向客户机TCP发送允许链接的报文段。在该报文段的首部包含3个重要的信息。首先是SYN比特被置为1.其次，该TCP报文段首部的确认号字段被置为client_isn+1。最后，服务器选择自己的初始序号(serveer_isn)，并将其放置到TCP报文段首部的序号字段中。 这个允许链接的报文段实际上表明了:”我收到了你要求建立连接的、带有初始序号client_isn的SYN分组。我同意建立连接。我自己的初始序号是server_isn。”该允许链接的报文段有时被称为<strong>SYNACK报文段</strong>。</li>
+<li>在收到SYNACK报文段后，客户机也要给该连接分配缓存和变量。客户机主机还会向服务器发送另外一个报文，这个报文对服务器的允许链接的报文进行了确认(客户机通过将值server_isn+1放置到TCP报文段的首部的确认字段中来完成此项工作)因为连接已经建立，所以该SYN比特被置为0。</li>
+</ol>
+<p><img src="./img/三次握手.png" alt="三次握手示意图"></p>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>TCP连接的断开需要4次报文的确认。 以客户机发起关闭为例。</p>
+<ol>
+<li>客户机TCP发送一个FIN比特为1的TCP报文段，并进入FIN_WAIT_1状态。用来关闭客户端到服务端的数据连接。</li>
+<li>服务机收到该FIN报文，回复一个ACK。</li>
+<li>服务机发送一个FIN比特为1的TCP报文段，用来关闭服务端到客户端的数据连接。</li>
+<li>客户端回复一个ACK报文，确认关闭。</li>
+</ol>
+<h2 id="为什么握手时三次，挥手需要四次"><a href="#为什么握手时三次，挥手需要四次" class="headerlink" title="为什么握手时三次，挥手需要四次"></a>为什么握手时三次，挥手需要四次</h2><p>这是因为服务端的LISTEN状态下的SOCKET当收到SYN报文的建连请求后，它可以把ACK和SYN（ACK起应答作用，而SYN起同步作用）放在一个报文里来发送。但关闭连接时，当收到对方的FIN报文通知时，它仅仅表示对方没有数据发送给你了；但未必你所有的数据都全部发送给对方了，所以你可以未必会马上会关闭SOCKET,也即你可能还需要发送一些数据给对方之后，再发送FIN报文给对方来表示你同意现在可以关闭连接了，所以它这里的ACK报文和FIN报文多数情况下都是分开发送的。</p>
+<h2 id="更多内容将在后面补充"><a href="#更多内容将在后面补充" class="headerlink" title="更多内容将在后面补充"></a>更多内容将在后面补充</h2>
       
     </div>
     
@@ -323,13 +338,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/04/10/快排实现/">快排实现</a></p>
+        <p><span>本文标题:</span><a href="/2017/04/11/TCP协议的三次握手与四次挥手/">TCP协议的三次握手与四次挥手</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">郑斯达</a></p>
-        <p><span>发布时间:</span>2017-04-10, 02:00:23</p>
-        <p><span>最后更新:</span>2017-04-10, 02:20:33</p>
+        <p><span>发布时间:</span>2017-04-11, 01:53:40</p>
+        <p><span>最后更新:</span>2017-04-11, 02:39:24</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/04/10/快排实现/" title="快排实现">http://yoursite.com/2017/04/10/快排实现/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/04/10/快排实现/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/04/11/TCP协议的三次握手与四次挥手/" title="TCP协议的三次握手与四次挥手">http://yoursite.com/2017/04/11/TCP协议的三次握手与四次挥手/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/04/11/TCP协议的三次握手与四次挥手/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -341,16 +356,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/04/10/动态内存new-malloc和delete-free/">
-                    动态内存new/malloc和delete/free
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/03/30/Linux内核编译--向内核添加新设备/">
-                    Linux内核编译--想内核添加新设备
+                <a href="/2017/04/10/单例模式/">
+                    单例模式
                 </a>
             </div>
         
@@ -362,7 +371,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#三次握手"><span class="toc-number">1.</span> <span class="toc-text">三次握手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四次挥手"><span class="toc-number">2.</span> <span class="toc-text">四次挥手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么握手时三次，挥手需要四次"><span class="toc-number">3.</span> <span class="toc-text">为什么握手时三次，挥手需要四次</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多内容将在后面补充"><span class="toc-number">4.</span> <span class="toc-text">更多内容将在后面补充</span></a></li></ol>
         
     </div>
     <style>
@@ -398,7 +407,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"快排实现　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"TCP协议的三次握手与四次挥手　| littlesida|郑斯达的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -414,7 +423,7 @@
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2017/04/10/快排实现/" data-title="快排实现" data-url="http://yoursite.com/2017/04/10/快排实现/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/04/11/TCP协议的三次握手与四次挥手/" data-title="TCP协议的三次握手与四次挥手" data-url="http://yoursite.com/2017/04/11/TCP协议的三次握手与四次挥手/"></div>
     <script>
         var duoshuoQuery = {short_name:"null"};
         var loadComment = function(){
@@ -437,15 +446,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/04/10/动态内存new-malloc和delete-free/" title="上一篇: 动态内存new/malloc和delete/free">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/03/30/Linux内核编译--向内核添加新设备/" title="下一篇: Linux内核编译--想内核添加新设备">
+            <a href="/2017/04/10/单例模式/" title="下一篇: 单例模式">
                 <i class="fa fa-angle-right"></i>
             </a>
         
