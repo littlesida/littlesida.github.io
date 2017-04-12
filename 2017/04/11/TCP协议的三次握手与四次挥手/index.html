@@ -21,12 +21,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/11/TCP协议的三次握手与四次挥手/index.html">
 <meta property="og:site_name" content="littlesida|郑斯达的博客">
 <meta property="og:description" content="TCP协议是面向连接的，因为在一个应用进程可以开始向另一个应用进程发送数据之前，这两个进程必须先握手。TCP是一种可靠的数据传输模式。TCP连接提供的是全双工服务(fuu-duplex service)：如果一台主机上的进程A与另一台主机上的进程B存在一条TCP连接，那么应用层数据就可以在从进程A流向B的同时，也从进程B流向进程A。TCP协议是**点对点(point-to-point)的，即在单个">
-<meta property="og:image" content="http://yoursite.com/./img/三次握手.png">
-<meta property="og:updated_time" content="2017-04-10T18:43:11.981Z">
+<meta property="og:image" content="http://yoursite.com/img/三次握手.png">
+<meta property="og:updated_time" content="2017-04-12T05:44:00.085Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP协议的三次握手与四次挥手">
 <meta name="twitter:description" content="TCP协议是面向连接的，因为在一个应用进程可以开始向另一个应用进程发送数据之前，这两个进程必须先握手。TCP是一种可靠的数据传输模式。TCP连接提供的是全双工服务(fuu-duplex service)：如果一台主机上的进程A与另一台主机上的进程B存在一条TCP连接，那么应用层数据就可以在从进程A流向B的同时，也从进程B流向进程A。TCP协议是**点对点(point-to-point)的，即在单个">
-<meta name="twitter:image" content="http://yoursite.com/./img/三次握手.png">
+<meta name="twitter:image" content="http://yoursite.com/img/三次握手.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -322,7 +322,7 @@
 <li>当包含TCP SYN报文段的IP数据报到达服务器主机，服务器会从该数据报中提取出TCP SYN报文段，为该TCP连接分配TCP缓存和变量，并向客户机TCP发送允许链接的报文段。在该报文段的首部包含3个重要的信息。首先是SYN比特被置为1.其次，该TCP报文段首部的确认号字段被置为client_isn+1。最后，服务器选择自己的初始序号(serveer_isn)，并将其放置到TCP报文段首部的序号字段中。 这个允许链接的报文段实际上表明了:”我收到了你要求建立连接的、带有初始序号client_isn的SYN分组。我同意建立连接。我自己的初始序号是server_isn。”该允许链接的报文段有时被称为<strong>SYNACK报文段</strong>。</li>
 <li>在收到SYNACK报文段后，客户机也要给该连接分配缓存和变量。客户机主机还会向服务器发送另外一个报文，这个报文对服务器的允许链接的报文进行了确认(客户机通过将值server_isn+1放置到TCP报文段的首部的确认字段中来完成此项工作)因为连接已经建立，所以该SYN比特被置为0。</li>
 </ol>
-<p><img src="./img/三次握手.png" alt="三次握手示意图"></p>
+<p><img src="/img/三次握手.png" alt="三次握手示意图"></p>
 <h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>TCP连接的断开需要4次报文的确认。 以客户机发起关闭为例。</p>
 <ol>
 <li>客户机TCP发送一个FIN比特为1的TCP报文段，并进入FIN_WAIT_1状态。用来关闭客户端到服务端的数据连接。</li>
@@ -342,7 +342,7 @@
         <p><span>本文标题:</span><a href="/2017/04/11/TCP协议的三次握手与四次挥手/">TCP协议的三次握手与四次挥手</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">郑斯达</a></p>
         <p><span>发布时间:</span>2017-04-11, 01:53:40</p>
-        <p><span>最后更新:</span>2017-04-11, 02:43:11</p>
+        <p><span>最后更新:</span>2017-04-12, 13:44:00</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/04/11/TCP协议的三次握手与四次挥手/" title="TCP协议的三次握手与四次挥手">http://yoursite.com/2017/04/11/TCP协议的三次握手与四次挥手/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/04/11/TCP协议的三次握手与四次挥手/　　作者: 郑斯达" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
